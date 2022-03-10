@@ -1,0 +1,585 @@
+definitions:
+  errorCode.Error:
+    type: object
+  model.Article:
+    properties:
+      content:
+        type: string
+      cover_image_url:
+        type: string
+      created_by:
+        type: string
+      created_on:
+        type: integer
+      deleted_on:
+        type: integer
+      desc:
+        type: string
+      id:
+        type: integer
+      is_del:
+        type: integer
+      modified_by:
+        type: string
+      modified_on:
+        type: integer
+      state:
+        type: integer
+      title:
+        type: string
+    type: object
+  model.Tag:
+    properties:
+      created_by:
+        type: string
+      created_on:
+        type: integer
+      deleted_on:
+        type: integer
+      id:
+        type: integer
+      is_del:
+        type: integer
+      modified_by:
+        type: string
+      modified_on:
+        type: integer
+      name:
+        type: string
+      state:
+        type: integer
+    type: object
+info:
+  contact:
+    email: wenyt8@mail2.edu.cn
+    name: Hanmur
+    url: https://hanmur.cn/
+  description: 简单的API描述文档
+  title: Goose谷声
+  version: "1.0"
+paths:
+  /api/articles/article:
+    get:
+      description: 获取多个文章
+      parameters:
+      - description: 文章名称
+        in: query
+        maxLength: 100
+        name: title
+        type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
+        in: query
+        name: state
+        type: integer
+      - description: 页码
+        in: query
+        name: page
+        type: integer
+      - description: 每页数量
+        in: query
+        name: page_size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/model.Article'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 获取多个文章
+      tags:
+      - 文章管理
+    post:
+      description: 创建文章
+      parameters:
+      - description: 文章标题
+        in: formData
+        maxLength: 100
+        minLength: 1
+        name: title
+        required: true
+        type: string
+      - description: 文章描述
+        in: formData
+        minLength: 1
+        name: desc
+        required: true
+        type: string
+      - description: 文章内容
+        in: formData
+        minLength: 1
+        name: content
+        required: true
+        type: string
+      - description: 封面路径
+        in: formData
+        maxLength: 100
+        name: cover_image_url
+        type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
+        in: formData
+        name: state
+        type: integer
+      - description: 创建者
+        in: formData
+        maxLength: 100
+        minLength: 1
+        name: created_by
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 创建文章
+      tags:
+      - 文章管理
+  /api/articles/article/{id}:
+    delete:
+      description: 删除文章
+      parameters:
+      - description: 文章 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 删除文章
+      tags:
+      - 文章管理
+    put:
+      description: 更新文章
+      parameters:
+      - description: 文章 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 文章标题
+        in: formData
+        maxLength: 100
+        name: title
+        type: string
+      - description: 文章描述
+        in: formData
+        name: desc
+        type: string
+      - description: 文章内容
+        in: formData
+        name: content
+        type: string
+      - description: 封面路径
+        in: formData
+        maxLength: 100
+        name: cover_image_url
+        type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
+        in: formData
+        name: state
+        type: integer
+      - description: 修改者
+        in: formData
+        maxLength: 100
+        minLength: 3
+        name: modified_by
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            items:
+              $ref: '#/definitions/model.Article'
+            type: array
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 更新文章
+      tags:
+      - 文章管理
+  /api/articles/article/{title}:
+    get:
+      description: 获取单个文章
+      parameters:
+      - description: 文章名称
+        in: query
+        maxLength: 100
+        name: title
+        type: string
+      - description: 文章作者
+        in: query
+        maxLength: 100
+        name: created_by
+        type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
+        in: query
+        name: state
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/model.Article'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 获取单个文章
+      tags:
+      - 文章管理
+  /api/articles/tags:
+    get:
+      description: 获取多个标签
+      parameters:
+      - description: 标签名称
+        in: query
+        maxLength: 100
+        name: name
+        type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
+        in: query
+        name: state
+        type: integer
+      - description: 页码
+        in: query
+        name: page
+        type: integer
+      - description: 每页数量
+        in: query
+        name: page_size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/model.Tag'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 获取多个标签
+      tags:
+      - 标签管理
+    post:
+      description: 创建一个新标签
+      parameters:
+      - description: 标签名称
+        in: formData
+        maxLength: 100
+        minLength: 1
+        name: name
+        required: true
+        type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
+        in: query
+        name: state
+        type: integer
+      - description: 创建者
+        in: formData
+        maxLength: 100
+        minLength: 1
+        name: created_by
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/model.Tag'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 新增标签
+      tags:
+      - 标签管理
+  /api/articles/tags/{id}:
+    delete:
+      description: 删除标签
+      parameters:
+      - description: 标签 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 删除标签
+      tags:
+      - 标签管理
+    put:
+      description: 更新标签
+      parameters:
+      - description: 标签 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 标签名称
+        in: formData
+        maxLength: 100
+        minLength: 1
+        name: name
+        type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
+        in: query
+        name: state
+        type: integer
+      - description: 修改者
+        in: formData
+        maxLength: 100
+        minLength: 1
+        name: modified_by
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            items:
+              $ref: '#/definitions/model.Tag'
+            type: array
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 更新标签
+      tags:
+      - 标签管理
+  /api/articles/tags/{name}:
+    get:
+      description: 获取单个标签，未实现
+      parameters:
+      - description: 标签名称
+        in: path
+        maxLength: 100
+        name: name
+        type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
+        in: query
+        name: state
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/model.Tag'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 获取单个标签
+      tags:
+      - 标签管理
+  /auth:
+    post:
+      description: 获取Token（临时使用的API）
+      parameters:
+      - description: 认证账号
+        in: formData
+        name: app_key
+        required: true
+        type: string
+      - description: 认证密码
+        in: formData
+        name: app_secret
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      summary: 获取Token
+      tags:
+      - Token验证
+  /upload/file:
+    post:
+      description: 文件上传，目前仅支持图片
+      parameters:
+      - description: 文件路径
+        in: formData
+        name: file
+        required: true
+        type: file
+      - description: 文件类型
+        enum:
+        - 1
+        in: formData
+        name: type
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 文件上传
+      tags:
+      - 上传
+schemes:
+- http
+- https
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: token
+    type: apiKey
+swagger: "2.0"

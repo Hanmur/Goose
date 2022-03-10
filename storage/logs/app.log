@@ -1,0 +1,138 @@
+2022-03-03T12:53:45.637+0800	INFO	logger/logger.go:102	你好[]
+2022-03-03T12:53:45.640+0800	WARN	logger/logger.go:104	KK %s[[biss]]
+2022-03-03T12:54:46.930+0800	INFO	logger/logger.go:102	你好[]
+2022-03-03T12:54:46.930+0800	WARN	logger/logger.go:104	KK %s[[biss]]
+2022-03-03T12:56:46.194+0800	INFO	logger/logger.go:102	你好%!(EXTRA []interface {}=[])
+2022-03-03T12:56:46.194+0800	WARN	logger/logger.go:104	KK [[biss]]
+2022-03-03T12:59:00.255+0800	INFO	logger/logger.go:84	你好
+2022-03-03T12:59:00.255+0800	WARN	logger/logger.go:104	KK [[biss]]
+2022-03-03T13:00:09.588+0800	INFO	logger/logger.go:84	你好
+2022-03-03T13:00:09.589+0800	WARN	logger/logger.go:104	KK [[biss]]
+2022-03-03T13:01:58.049+0800	INFO	logger/logger.go:84	你好
+2022-03-03T13:01:58.050+0800	WARN	logger/logger.go:104	KK [biss]
+2022-03-03T13:02:35.720+0800	INFO	logger/logger.go:84	你好
+2022-03-03T13:02:35.720+0800	WARN	logger/logger.go:104	[kk biss] is %!s(MISSING)
+2022-03-03T13:04:12.405+0800	INFO	logger/logger.go:84	你好
+2022-03-03T13:04:12.405+0800	WARN	logger/logger.go:104	[kk biss] is %!s(MISSING)
+2022-03-03T13:04:48.446+0800	INFO	logger/logger.go:84	你好
+2022-03-03T13:04:48.446+0800	WARN	logger/logger.go:104	&[kk biss] is %!s(MISSING)
+2022-03-03T13:06:32.452+0800	INFO	logger/logger.go:84	你好
+2022-03-03T13:06:32.452+0800	WARN	logger/logger.go:104	[kk biss] is %!s(MISSING)
+2022-03-03T13:09:45.223+0800	INFO	logger/logger.go:85	你好
+2022-03-03T13:09:45.223+0800	WARN	logger/logger.go:87	kk is biss
+2022-03-03T14:38:26.056+0800	INFO	你好
+2022-03-03T14:38:26.057+0800	WARN	kk is biss
+2022-03-03T14:39:54.899+0800	INFO	你好
+2022-03-03T14:39:54.899+0800	WARN	kk is biss
+2022-03-03T14:40:15.027+0800	INFO	你好
+2022-03-03T14:40:15.028+0800	WARN	kk is biss
+2022-03-03T14:40:37.072+0800	INFO	logger/logger.go:85	你好
+2022-03-03T14:40:37.073+0800	WARN	logger/logger.go:87	kk is biss
+2022-03-03T14:46:58.638+0800	INFO	logger/logger.go:127	你好
+2022-03-03T14:46:58.640+0800	WARN	logger/logger.go:139	kk is biss
+2022-03-03T14:47:26.009+0800	INFO	Goose/main.go:42	你好
+2022-03-03T14:47:26.009+0800	WARN	Goose/main.go:43	kk is biss
+2022-03-03T14:58:54.036+0800	INFO	Goose/main.go:42	你好
+2022-03-03T14:58:54.037+0800	WARN	Goose/main.go:43	kk is biss
+2022-03-04T00:06:49.832+0800	INFO	Goose/main.go:42	你好
+2022-03-04T00:06:49.834+0800	WARN	Goose/main.go:43	kk is biss
+2022-03-04T17:30:02.679+0800	INFO	Goose/main.go:47	你好
+2022-03-04T17:30:02.679+0800	WARN	Goose/main.go:48	kk is biss
+2022-03-04T17:31:24.967+0800	INFO	Goose/main.go:47	你好
+2022-03-04T17:31:24.968+0800	WARN	Goose/main.go:48	kk is biss
+2022-03-04T17:35:19.551+0800	INFO	Goose/main.go:47	你好
+2022-03-04T17:35:19.552+0800	WARN	Goose/main.go:48	kk is biss
+2022-03-04T17:36:14.659+0800	INFO	Goose/main.go:47	你好
+2022-03-04T17:36:14.660+0800	WARN	Goose/main.go:48	kk is biss
+2022-03-04T17:36:41.762+0800	INFO	Goose/main.go:47	你好
+2022-03-04T17:36:41.765+0800	WARN	Goose/main.go:48	kk is biss
+2022-03-04T17:36:58.988+0800	INFO	Goose/main.go:47	你好
+2022-03-04T17:36:58.988+0800	WARN	Goose/main.go:48	kk is biss
+2022-03-04T17:50:27.254+0800	INFO	Goose/main.go:42	你好
+2022-03-04T17:50:27.255+0800	WARN	Goose/main.go:43	kk is biss
+2022-03-04T17:50:43.293+0800	INFO	Goose/main.go:42	你好
+2022-03-04T17:50:43.294+0800	WARN	Goose/main.go:43	kk is biss
+2022-03-04T17:51:11.705+0800	INFO	Goose/main.go:50	你好
+2022-03-04T17:51:11.706+0800	WARN	Goose/main.go:51	kk is biss
+2022-03-04T17:51:27.213+0800	INFO	Goose/main.go:50	你好
+2022-03-04T17:51:27.214+0800	WARN	Goose/main.go:51	kk is biss
+2022-03-04T17:53:02.555+0800	INFO	Goose/main.go:43	你好
+2022-03-04T17:53:02.557+0800	WARN	Goose/main.go:44	kk is biss
+2022-03-04T17:53:15.237+0800	INFO	Goose/main.go:43	你好
+2022-03-04T17:53:15.237+0800	WARN	Goose/main.go:44	kk is biss
+2022-03-04T17:54:40.989+0800	INFO	Goose/main.go:49	你好
+2022-03-04T17:54:40.990+0800	WARN	Goose/main.go:50	kk is biss
+2022-03-04T17:56:33.532+0800	INFO	Goose/main.go:69	你好
+2022-03-04T17:56:33.533+0800	WARN	Goose/main.go:70	kk is biss
+2022-03-04T18:00:13.856+0800	INFO	Goose/main.go:54	你好
+2022-03-04T18:00:13.857+0800	WARN	Goose/main.go:55	kk is biss
+2022-03-04T18:02:18.161+0800	INFO	Goose/main.go:51	你好
+2022-03-04T18:02:18.161+0800	WARN	Goose/main.go:52	kk is biss
+2022-03-04T18:10:58.975+0800	INFO	Goose/main.go:50	你好
+2022-03-04T18:10:58.975+0800	WARN	Goose/main.go:51	kk is biss
+2022-03-07T11:30:37.236+0800	INFO	Goose/main.go:50	你好
+2022-03-07T11:30:37.238+0800	WARN	Goose/main.go:51	kk is biss
+2022-03-07T17:53:02.765+0800	INFO	Goose/main.go:50	你好
+2022-03-07T17:53:02.766+0800	WARN	Goose/main.go:51	kk is biss
+2022-03-07T18:01:12.597+0800	INFO	Goose/main.go:50	你好
+2022-03-07T18:01:12.598+0800	WARN	Goose/main.go:51	kk is biss
+2022-03-07T18:01:57.281+0800	INFO	articlesAPI/tag.go:57	HiKK
+2022-03-07T18:03:54.199+0800	INFO	articlesAPI/tag.go:57	HiKK
+2022-03-07T18:04:34.190+0800	INFO	articlesAPI/tag.go:57	HiKK
+2022-03-07T18:07:34.352+0800	INFO	articlesAPI/tag.go:57	HiKK
+2022-03-07T18:13:25.876+0800	INFO	articlesAPI/tag.go:57	HiKK
+2022-03-07T18:22:09.506+0800	INFO	Goose/main.go:50	你好
+2022-03-07T18:22:09.506+0800	WARN	Goose/main.go:51	kk is biss
+2022-03-07T18:22:32.671+0800	INFO	articlesAPI/tag.go:57	HiKK
+2022-03-07T18:29:23.986+0800	INFO	articlesAPI/tag.go:57	HiKK
+2022-03-07T18:29:37.495+0800	INFO	articlesAPI/tag.go:57	HiKK
+2022-03-07T18:31:31.657+0800	INFO	articlesAPI/tag.go:57	HiKK
+2022-03-07T18:31:38.292+0800	ERROR	articlesAPI/tag.go:53	app.BindAndValid errs: State必须是[0 1]中的一个
+2022-03-07T18:59:30.377+0800	INFO	Goose/main.go:50	你好
+2022-03-07T18:59:30.378+0800	WARN	Goose/main.go:51	kk is biss
+2022-03-07T18:59:39.366+0800	ERROR	articlesAPI/tag.go:53	app.BindAndValid errs: State必须是[0 1]中的一个
+2022-03-08T16:38:24.128+0800	INFO	Goose/main.go:50	你好
+2022-03-08T16:38:24.129+0800	WARN	Goose/main.go:51	kk is biss
+2022-03-08T16:38:44.233+0800	INFO	articlesAPI/tag.go:55	HiKK
+2022-03-08T17:45:37.204+0800	ERROR	articlesAPI/tag.go:95	app.BindAndValid errs: 
+2022-03-08T17:47:59.833+0800	ERROR	articlesAPI/tag.go:62	svc.CountTag err: Error 1146: Table 'goose.goose_tag' doesn't exist
+2022-03-08T17:48:56.941+0800	ERROR	articlesAPI/tag.go:95	app.BindAndValid errs: 
+2022-03-08T17:49:42.973+0800	ERROR	articlesAPI/tag.go:95	app.BindAndValid errs: Name为必填字段
+2022-03-08T17:49:53.730+0800	ERROR	articlesAPI/tag.go:95	app.BindAndValid errs: Name为必填字段
+2022-03-08T17:50:51.459+0800	ERROR	articlesAPI/tag.go:103	svc.CreateTag err: Error 1146: Table 'goose.goose_tag' doesn't exist
+2022-03-08T17:51:27.157+0800	ERROR	articlesAPI/tag.go:103	svc.CreateTag err: Error 1146: Table 'goose.goose_tag' doesn't exist
+2022-03-08T17:53:16.225+0800	ERROR	articlesAPI/tag.go:103	svc.CreateTag err: Error 1054: Unknown column 'deleted_on' in 'field list'
+2022-03-08T17:54:49.624+0800	ERROR	articlesAPI/tag.go:103	svc.CreateTag err: Error 1054: Unknown column 'deleted_on' in 'field list'
+2022-03-08T17:57:11.366+0800	ERROR	articlesAPI/tag.go:95	app.BindAndValid errs: 
+2022-03-08T17:57:26.201+0800	ERROR	articlesAPI/tag.go:95	app.BindAndValid errs: 
+2022-03-08T17:59:47.979+0800	ERROR	articlesAPI/tag.go:95	app.BindAndValid errs: 
+2022-03-08T18:01:45.585+0800	ERROR	articlesAPI/tag.go:95	app.BindAndValid errs: 
+2022-03-08T18:02:03.915+0800	ERROR	articlesAPI/tag.go:95	app.BindAndValid errs: 
+2022-03-08T18:03:35.492+0800	ERROR	articlesAPI/tag.go:95	app.BindAndValid errs: 
+2022-03-08T18:08:50.473+0800	ERROR	articlesAPI/tag.go:130	app.BindAndValid errs: ID为必填字段
+2022-03-08T18:09:12.734+0800	ERROR	articlesAPI/tag.go:130	app.BindAndValid errs: ID为必填字段
+2022-03-08T18:10:32.265+0800	ERROR	articlesAPI/tag.go:130	app.BindAndValid errs: ModifiedBy为必填字段
+2022-03-08T18:10:44.249+0800	ERROR	articlesAPI/tag.go:130	app.BindAndValid errs: ModifiedBy为必填字段
+2022-03-09T18:56:57.967+0800	INFO	articlesAPI/tag.go:40	HI
+2022-03-09T18:56:58.003+0800	ERROR	articlesAPI/tag.go:45	svc.GetTag err: unsupported destination, should be slice or struct
+2022-03-09T18:58:43.507+0800	INFO	articlesAPI/tag.go:40	HI
+2022-03-09T18:58:43.508+0800	ERROR	articlesAPI/tag.go:45	svc.GetTag err: unsupported destination, should be slice or struct
+2022-03-09T19:04:01.407+0800	ERROR	articlesAPI/tag.go:45	svc.GetTag err: unsupported destination, should be slice or struct
+2022-03-09T19:05:20.139+0800	ERROR	articlesAPI/tag.go:45	svc.GetTag err: unsupported destination, should be slice or struct
+2022-03-09T19:06:26.937+0800	ERROR	articlesAPI/tag.go:45	svc.GetTag err: unsupported destination, should be slice or struct
+2022-03-09T20:03:07.112+0800	INFO	dao/tag.go:44	
+2022-03-10T01:50:10.398+0800	ERROR	authAPI/auth.go:16	app.BindAndValid errs: AppKey为必填字段,AppSecret为必填字段
+2022-03-10T01:50:12.751+0800	ERROR	authAPI/auth.go:16	app.BindAndValid errs: AppKey为必填字段,AppSecret为必填字段
+2022-03-10T01:50:21.048+0800	ERROR	authAPI/auth.go:16	app.BindAndValid errs: AppKey为必填字段,AppSecret为必填字段
+2022-03-10T01:50:37.723+0800	ERROR	authAPI/auth.go:16	app.BindAndValid errs: AppKey为必填字段,AppSecret为必填字段
+2022-03-10T01:50:53.569+0800	ERROR	authAPI/auth.go:16	app.BindAndValid errs: AppKey为必填字段,AppSecret为必填字段
+2022-03-10T01:51:08.116+0800	ERROR	authAPI/auth.go:16	app.BindAndValid errs: AppKey为必填字段,AppSecret为必填字段
+2022-03-10T01:51:14.024+0800	ERROR	authAPI/auth.go:16	app.BindAndValid errs: AppKey为必填字段,AppSecret为必填字段
+2022-03-10T01:51:24.517+0800	ERROR	authAPI/auth.go:16	app.BindAndValid errs: AppKey为必填字段,AppSecret为必填字段
+2022-03-10T03:34:00.950+0800	ERROR	articlesAPI/article.go:75	app.BindAndValid errs: Title为必填字段
+2022-03-10T04:16:21.293+0800	ERROR	articlesAPI/article.go:125	app.BindAndValid errs: 
+2022-03-10T04:17:54.504+0800	ERROR	articlesAPI/article.go:125	app.BindAndValid errs: 
+2022-03-10T04:18:03.989+0800	ERROR	articlesAPI/article.go:125	app.BindAndValid errs: 
+2022-03-10T04:19:33.774+0800	ERROR	articlesAPI/article.go:125	app.BindAndValid errs: 
+2022-03-10T04:55:17.545+0800	ERROR	articlesAPI/article.go:38	app.BindAndValid errs: Title为必填字段
+2022-03-10T04:59:41.997+0800	ERROR	articlesAPI/article.go:38	app.BindAndValid errs: Title为必填字段
