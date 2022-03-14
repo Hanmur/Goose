@@ -19,7 +19,7 @@ func init() {
 	}
 
 	err = setupDBEngine()
-	if err != nil{
+	if err != nil {
 		log.Fatalf("init.setupDBEngine err: %v", err)
 	}
 
@@ -54,7 +54,6 @@ func main() {
 	_ = s.ListenAndServe()
 }
 
-
 func setupSetting() error {
 	sets, err := setting.NewSetting()
 	if err != nil {
@@ -81,6 +80,11 @@ func setupSetting() error {
 		return err
 	}
 
+	err = sets.ReadSection("Email", &global.EmailSetting)
+	if err != nil {
+		return err
+	}
+
 	global.JWTSetting.Expire *= time.Second
 	global.ServerSetting.ReadTimeout *= time.Second
 	global.ServerSetting.WriteTimeout *= time.Second
@@ -101,12 +105,10 @@ func setupLogger() error {
 	var err error
 	global.Logger, err = logger.NewLogger(
 		global.AppSetting.LogSavePath + "/" + global.AppSetting.LogFileName + global.AppSetting.LogFileExt,
-		)
-	if err != nil{
+	)
+	if err != nil {
 		return err
 	}
 
 	return nil
 }
-
-

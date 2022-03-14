@@ -12,11 +12,11 @@ type ServerSettingS struct {
 
 //AppSettingS 应用设置
 type AppSettingS struct {
-	DefaultPageSize int
-	MaxPageSize     int
-	LogSavePath     string
-	LogFileName     string
-	LogFileExt      string
+	DefaultPageSize      int
+	MaxPageSize          int
+	LogSavePath          string
+	LogFileName          string
+	LogFileExt           string
 	UploadSavePath       string
 	UploadServerUrl      string
 	UploadImageMaxSize   int
@@ -42,6 +42,17 @@ type JWTSettingS struct {
 	Secret string
 	Issuer string
 	Expire time.Duration
+}
+
+//EmailSettingS 邮箱设置
+type EmailSettingS struct {
+	Host     string
+	Port     int
+	UserName string
+	Password string
+	IsSSL    bool
+	From     string
+	To       []string
 }
 
 //ReadSection 设置段读取
