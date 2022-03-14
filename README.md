@@ -29,6 +29,8 @@ blog-service
 * 接口文档生成：`swaggo`
 * 接口参数校验：`validator`
 * 访问控制：`jwt-go`
+* 邮件提醒：`gomail.v2`
+* 流量控制：`ratelimit`
 
 ## 内部全局部件
 
