@@ -136,3 +136,8 @@
 2022-03-10T04:19:33.774+0800	ERROR	articlesAPI/article.go:125	app.BindAndValid errs: 
 2022-03-10T04:55:17.545+0800	ERROR	articlesAPI/article.go:38	app.BindAndValid errs: Title为必填字段
 2022-03-10T04:59:41.997+0800	ERROR	articlesAPI/article.go:38	app.BindAndValid errs: Title为必填字段
+2022-03-14T19:07:40.537+0800	INFO	routers/router.go:41	60ns
+2022-03-14T19:11:28.554+0800	INFO	routers/router.go:41	60µsAS
+2022-03-14T19:11:28.554+0800	INFO	routers/router.go:42	1m0sGS
+2022-03-14T19:13:40.317+0800	INFO	routers/router.go:41	1m0sAS
+2022-03-14T19:13:40.318+0800	INFO	routers/router.go:42	1m0sGS

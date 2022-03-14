@@ -7,17 +7,35 @@ import (
 	"Goose/internal/routers/api/articlesAPI"
 	"Goose/internal/routers/api/authAPI"
 	"Goose/internal/routers/api/uploadAPI"
+	"Goose/pkg/limiter"
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 	"net/http"
+	"time"
 )
+
+//methodLimiters 流量限制器
+var methodLimiters = limiter.NewMethodLimiter().AddBuckets(limiter.LimitBucketRule{
+	Key:          "/auth",
+	FillInterval: time.Second,
+	Capacity:     10,
+	Quantum:      10,
+})
 
 //NewRouter 路由设置
 func NewRouter() *gin.Engine {
 	router := gin.New()
-	router.Use(gin.Logger())
-	router.Use(gin.Recovery())
+	if global.ServerSetting.RunMode == "debug" {
+		router.Use(gin.Logger())
+		router.Use(gin.Recovery())
+	} else {
+		router.Use(middleware.AccessLog())
+		router.Use(middleware.Recovery())
+	}
+
+	router.Use(middleware.ContextTimeout(global.AppSetting.DefaultContextTimeout))
+	router.Use(middleware.RateLimiter(methodLimiters))
 	router.Use(middleware.Translations())
 
 	// 注册Swagger的获取API

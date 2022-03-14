@@ -12,15 +12,16 @@ type ServerSettingS struct {
 
 //AppSettingS 应用设置
 type AppSettingS struct {
-	DefaultPageSize      int
-	MaxPageSize          int
-	LogSavePath          string
-	LogFileName          string
-	LogFileExt           string
-	UploadSavePath       string
-	UploadServerUrl      string
-	UploadImageMaxSize   int
-	UploadImageAllowExts []string
+	DefaultPageSize       int
+	MaxPageSize           int
+	DefaultContextTimeout time.Duration
+	LogSavePath           string
+	LogFileName           string
+	LogFileExt            string
+	UploadSavePath        string
+	UploadServerUrl       string
+	UploadImageMaxSize    int
+	UploadImageAllowExts  []string
 }
 
 //DatabaseSettingS 数据库设置
