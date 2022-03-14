@@ -19,6 +19,8 @@ blog-service
 └── third_party	// 第三方的资源工具，例如 Swagger UI
 ```
 
+## 项目引入
+config内的`modelConfig.yaml`需自行重命名为`config.yaml`才可正常使用
 
 
 ## 使用包
