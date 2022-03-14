@@ -58,7 +58,7 @@ info:
   title: Goose谷声
   version: "1.0"
 paths:
-  /api/articles/article:
+  /api/v1/article:
     get:
       description: 获取多个文章
       parameters:
@@ -165,7 +165,7 @@ paths:
       summary: 创建文章
       tags:
       - 文章管理
-  /api/articles/article/{id}:
+  /api/v1/article/{id}:
     delete:
       description: 删除文章
       parameters:
@@ -257,7 +257,7 @@ paths:
       summary: 更新文章
       tags:
       - 文章管理
-  /api/articles/article/{title}:
+  /api/v1/article/{title}:
     get:
       description: 获取单个文章
       parameters:
@@ -299,7 +299,7 @@ paths:
       summary: 获取单个文章
       tags:
       - 文章管理
-  /api/articles/tags:
+  /api/v1/tags:
     get:
       description: 获取多个标签
       parameters:
@@ -389,7 +389,7 @@ paths:
       summary: 新增标签
       tags:
       - 标签管理
-  /api/articles/tags/{id}:
+  /api/v1/tags/{id}:
     delete:
       description: 删除标签
       parameters:
@@ -469,7 +469,7 @@ paths:
       summary: 更新标签
       tags:
       - 标签管理
-  /api/articles/tags/{name}:
+  /api/v1/tags/{name}:
     get:
       description: 获取单个标签，未实现
       parameters:
@@ -477,6 +477,7 @@ paths:
         in: path
         maxLength: 100
         name: name
+        required: true
         type: string
       - default: 1
         description: 状态

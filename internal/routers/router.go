@@ -13,7 +13,6 @@ import (
 	"net/http"
 )
 
-
 //NewRouter 路由设置
 func NewRouter() *gin.Engine {
 	router := gin.New()
@@ -37,7 +36,7 @@ func NewRouter() *gin.Engine {
 	// 注册文章管理API
 	article := articlesAPI.NewArticle()
 	tag := articlesAPI.NewTag()
-	apiArticle := router.Group("/api/articles")
+	apiArticle := router.Group("/api/v1")
 	apiArticle.Use(middleware.JWT())
 	{
 		apiArticle.POST("/tags", tag.Create)
@@ -57,4 +56,3 @@ func NewRouter() *gin.Engine {
 
 	return router
 }
-

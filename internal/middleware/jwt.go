@@ -9,15 +9,15 @@ import (
 
 //JWT Token校验
 func JWT() gin.HandlerFunc {
-	return func(c *gin.Context) {
+	return func(context *gin.Context) {
 		var (
 			token string
 			ecode = errorCode.Success
 		)
-		if s, exist := c.GetQuery("token"); exist {
+		if s, exist := context.GetQuery("token"); exist {
 			token = s
 		} else {
-			token = c.GetHeader("token")
+			token = context.GetHeader("token")
 		}
 		if token == "" {
 			ecode = errorCode.InvalidParams
@@ -34,12 +34,12 @@ func JWT() gin.HandlerFunc {
 		}
 
 		if ecode != errorCode.Success {
-			response := app.NewResponse(c)
+			response := app.NewResponse(context)
 			response.ToErrorResponse(ecode)
-			c.Abort()
+			context.Abort()
 			return
 		}
 
-		c.Next()
+		context.Next()
 	}
 }

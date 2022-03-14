@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Tag struct {}
+type Tag struct{}
 
 func NewTag() Tag {
 	return Tag{}
@@ -22,12 +22,12 @@ func NewTag() Tag {
 // @Tags	 	标签管理
 // @Produce  	json
 // @Security ApiKeyAuth
-// @Param    	name       path     string         false  "标签名称"  maxlength(100)
-// @Param    	state      query     int            false  "状态"    Enums(0, 1)  default(1)
+// @Param    	name       path     string         true  "标签名称"  maxlength(100)
+// @Param    	state      query     int           false  "状态"    Enums(0, 1)  default(1)
 // @Success  	200        {object}  model.Tag      "成功"
 // @Failure  	400        {object}  errorCode.Error  "请求错误"
 // @Failure  	500        {object}  errorCode.Error  "内部错误"
-// @Router   	/api/articles/tags/{name} [get]
+// @Router   	/api/v1/tags/{name} [get]
 func (tag Tag) Get(context *gin.Context) {
 	// 参数校验
 	param := validator.GetTagRequest{}
@@ -65,7 +65,7 @@ func (tag Tag) Get(context *gin.Context) {
 // @Success  	200        {object}  model.Tag      "成功"
 // @Failure  	400        {object}  errorCode.Error  "请求错误"
 // @Failure  	500        {object}  errorCode.Error  "内部错误"
-// @Router   	/api/articles/tags [get]
+// @Router   	/api/v1/tags [get]
 func (tag Tag) List(context *gin.Context) {
 	// 参数校验
 	param := validator.TagListRequest{}
@@ -112,7 +112,7 @@ func (tag Tag) List(context *gin.Context) {
 // @Success  	200         {object}  model.Tag      "成功"
 // @Failure  	400         {object}  errorCode.Error  "请求错误"
 // @Failure  	500         {object}  errorCode.Error  "内部错误"
-// @Router   	/api/articles/tags [post]
+// @Router   	/api/v1/tags [post]
 func (tag Tag) Create(context *gin.Context) {
 	// 参数校验
 	param := validator.CreateTagRequest{}
@@ -151,7 +151,7 @@ func (tag Tag) Create(context *gin.Context) {
 // @Success  	200          {array}   model.Tag      "成功"
 // @Failure  	400          {object}  errorCode.Error  "请求错误"
 // @Failure  	500          {object}  errorCode.Error  "内部错误"
-// @Router   	/api/articles/tags/{id} [put]
+// @Router   	/api/v1/tags/{id} [put]
 func (tag Tag) Update(context *gin.Context) {
 	// 参数校验
 	param := validator.UpdateTagRequest{ID: convert.StrTo(context.Param("id")).MustUInt32()}
@@ -187,7 +187,7 @@ func (tag Tag) Update(context *gin.Context) {
 // @Success  	200  {string}  string         "成功"
 // @Failure  	400  {object}  errorCode.Error  "请求错误"
 // @Failure  	500  {object}  errorCode.Error  "内部错误"
-// @Router   	/api/articles/tags/{id} [delete]
+// @Router   	/api/v1/tags/{id} [delete]
 func (tag Tag) Delete(context *gin.Context) {
 	// 参数校验
 	param := validator.DeleteTagRequest{ID: convert.StrTo(context.Param("id")).MustUInt32()}

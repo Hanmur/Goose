@@ -15,7 +15,7 @@
         "version": "1.0"
     },
     "paths": {
-        "/api/articles/article": {
+        "/api/v1/article": {
             "get": {
                 "security": [
                     {
@@ -173,7 +173,7 @@
                 }
             }
         },
-        "/api/articles/article/{id}": {
+        "/api/v1/article/{id}": {
             "put": {
                 "security": [
                     {
@@ -312,7 +312,7 @@
                 }
             }
         },
-        "/api/articles/article/{title}": {
+        "/api/v1/article/{title}": {
             "get": {
                 "security": [
                     {
@@ -376,7 +376,7 @@
                 }
             }
         },
-        "/api/articles/tags": {
+        "/api/v1/tags": {
             "get": {
                 "security": [
                     {
@@ -511,7 +511,7 @@
                 }
             }
         },
-        "/api/articles/tags/{id}": {
+        "/api/v1/tags/{id}": {
             "put": {
                 "security": [
                     {
@@ -632,7 +632,7 @@
                 }
             }
         },
-        "/api/articles/tags/{name}": {
+        "/api/v1/tags/{name}": {
             "get": {
                 "security": [
                     {
@@ -653,7 +653,8 @@
                         "type": "string",
                         "description": "标签名称",
                         "name": "name",
-                        "in": "path"
+                        "in": "path",
+                        "required": true
                     },
                     {
                         "enum": [

@@ -12,26 +12,26 @@ type AccessLogWriter struct {
 	body *bytes.Buffer
 }
 
-func (w AccessLogWriter) Write(p []byte) (int, error) {
-	if n, err := w.body.Write(p); err != nil {
+func (writer AccessLogWriter) Write(p []byte) (int, error) {
+	if n, err := writer.body.Write(p); err != nil {
 		return n, err
 	}
-	return w.ResponseWriter.Write(p)
+	return writer.ResponseWriter.Write(p)
 }
 
 func AccessLog() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		bodyWriter := &AccessLogWriter{body: bytes.NewBufferString(""), ResponseWriter: c.Writer}
-		c.Writer = bodyWriter
+	return func(context *gin.Context) {
+		bodyWriter := &AccessLogWriter{body: bytes.NewBufferString(""), ResponseWriter: context.Writer}
+		context.Writer = bodyWriter
 
 		beginTime := time.Now().Unix()
-		c.Next()
+		context.Next()
 		endTime := time.Now().Unix()
 
-		fields := "request{" + c.Request.PostForm.Encode() + "}, response{" + bodyWriter.body.String() + "}"
+		fields := "request{" + context.Request.PostForm.Encode() + "}, response{" + bodyWriter.body.String() + "}"
 		global.Logger.InfoF("fields: %s, access log: method: %s, status_code: %d, begin_time: %d, end_time: %d",
 			fields,
-			c.Request.Method,
+			context.Request.Method,
 			bodyWriter.Status(),
 			beginTime,
 			endTime,

@@ -20,7 +20,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/api/articles/article": {
+        "/api/v1/article": {
             "get": {
                 "security": [
                     {
@@ -178,7 +178,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/articles/article/{id}": {
+        "/api/v1/article/{id}": {
             "put": {
                 "security": [
                     {
@@ -317,7 +317,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/articles/article/{title}": {
+        "/api/v1/article/{title}": {
             "get": {
                 "security": [
                     {
@@ -381,7 +381,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/articles/tags": {
+        "/api/v1/tags": {
             "get": {
                 "security": [
                     {
@@ -516,7 +516,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/articles/tags/{id}": {
+        "/api/v1/tags/{id}": {
             "put": {
                 "security": [
                     {
@@ -637,7 +637,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/articles/tags/{name}": {
+        "/api/v1/tags/{name}": {
             "get": {
                 "security": [
                     {
@@ -658,7 +658,8 @@ const docTemplate = `{
                         "type": "string",
                         "description": "标签名称",
                         "name": "name",
-                        "in": "path"
+                        "in": "path",
+                        "required": true
                     },
                     {
                         "enum": [

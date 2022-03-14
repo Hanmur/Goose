@@ -28,7 +28,7 @@ func NewArticle() Article {
 // @Success  	200        {object}  model.Article      "成功"
 // @Failure  	400        {object}  errorCode.Error  "请求错误"
 // @Failure  	500        {object}  errorCode.Error  "内部错误"
-// @Router   	/api/articles/article/{title} [get]
+// @Router   	/api/v1/article/{title} [get]
 func (article Article) Get(context *gin.Context) {
 	// 参数校验
 	param := validator.GetArticleRequest{Title: convert.StrTo(context.Param("title")).String()}
@@ -66,7 +66,7 @@ func (article Article) Get(context *gin.Context) {
 // @Success  	200        {object}  model.Article      "成功"
 // @Failure  	400        {object}  errorCode.Error  "请求错误"
 // @Failure  	500        {object}  errorCode.Error  "内部错误"
-// @Router   	/api/articles/article [get]
+// @Router   	/api/v1/article [get]
 func (article Article) List(context *gin.Context) {
 	// 参数校验
 	param := validator.ArticleListRequest{}
@@ -116,7 +116,7 @@ func (article Article) List(context *gin.Context) {
 // @Success  	200  {string}  string         "成功"
 // @Failure  	400  {object}  errorCode.Error  "请求错误"
 // @Failure  	500  {object}  errorCode.Error  "内部错误"
-// @Router   	/api/articles/article [POST]
+// @Router   	/api/v1/article [POST]
 func (article Article) Create(context *gin.Context) {
 	// 参数校验
 	param := validator.CreateArticleRequest{}
@@ -137,7 +137,7 @@ func (article Article) Create(context *gin.Context) {
 		param.CoverImageUrl,
 		param.CreatedBy,
 		param.State,
-		)
+	)
 	if err != nil {
 		global.Logger.ErrorF("svc.CreateArticle err: %v", err)
 		response.ToErrorResponse(errorCode.ErrorCreateArticleFail)
@@ -165,7 +165,7 @@ func (article Article) Create(context *gin.Context) {
 // @Success  	200          {array}   model.Article      "成功"
 // @Failure  	400          {object}  errorCode.Error  "请求错误"
 // @Failure  	500          {object}  errorCode.Error  "内部错误"
-// @Router   	/api/articles/article/{id} [put]
+// @Router   	/api/v1/article/{id} [put]
 func (article Article) Update(context *gin.Context) {
 	// 参数校验
 	param := validator.UpdateArticleRequest{
@@ -189,7 +189,7 @@ func (article Article) Update(context *gin.Context) {
 		param.CoverImageUrl,
 		param.ModifiedBy,
 		param.State,
-		)
+	)
 	if err != nil {
 		global.Logger.ErrorF("svc.UpdateArticle err: %v", err)
 		response.ToErrorResponse(errorCode.ErrorUpdateArticleFail)
@@ -211,7 +211,7 @@ func (article Article) Update(context *gin.Context) {
 // @Success  	200  {string}  string         "成功"
 // @Failure  	400  {object}  errorCode.Error  "请求错误"
 // @Failure  	500  {object}  errorCode.Error  "内部错误"
-// @Router   	/api/articles/article/{id} [delete]
+// @Router   	/api/v1/article/{id} [delete]
 func (article Article) Delete(context *gin.Context) {
 	// 参数校验
 	param := validator.DeleteArticleRequest{ID: convert.StrTo(context.Param("id")).MustUInt32()}
