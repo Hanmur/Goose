@@ -112,10 +112,9 @@ func (logger *Logger) logF(level Level, template string, args []interface{}) {
 	}
 }
 
-
 //以下是对具体日志方法的实现
 
-func (logger *Logger) Debug(message string){
+func (logger *Logger) Debug(message string) {
 	logger.log(LevelDebug, message)
 }
 
@@ -123,7 +122,7 @@ func (logger *Logger) DebugF(template string, args ...interface{}) {
 	logger.log(LevelDebug, fmt.Sprintf(template, args...))
 }
 
-func (logger *Logger) Info(message string){
+func (logger *Logger) Info(message string) {
 	logger.log(LevelInfo, message)
 }
 
@@ -131,7 +130,7 @@ func (logger *Logger) InfoF(template string, args ...interface{}) {
 	logger.log(LevelInfo, fmt.Sprintf(template, args...))
 }
 
-func (logger *Logger) Warn(message string){
+func (logger *Logger) Warn(message string) {
 	logger.log(LevelWarn, message)
 }
 
@@ -139,7 +138,7 @@ func (logger *Logger) WarnF(template string, args ...interface{}) {
 	logger.log(LevelWarn, fmt.Sprintf(template, args...))
 }
 
-func (logger *Logger) Error(message string){
+func (logger *Logger) Error(message string) {
 	logger.log(LevelError, message)
 }
 
@@ -147,7 +146,7 @@ func (logger *Logger) ErrorF(template string, args ...interface{}) {
 	logger.log(LevelError, fmt.Sprintf(template, args...))
 }
 
-func (logger *Logger) Fatal(message string){
+func (logger *Logger) Fatal(message string) {
 	logger.log(LevelFatal, message)
 }
 
@@ -155,7 +154,7 @@ func (logger *Logger) FatalF(template string, args ...interface{}) {
 	logger.log(LevelFatal, fmt.Sprintf(template, args...))
 }
 
-func (logger *Logger) Panic(message string){
+func (logger *Logger) Panic(message string) {
 	logger.log(LevelPanic, message)
 }
 
