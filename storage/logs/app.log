@@ -141,3 +141,10 @@
 2022-03-14T19:11:28.554+0800	INFO	routers/router.go:42	1m0sGS
 2022-03-14T19:13:40.317+0800	INFO	routers/router.go:41	1m0sAS
 2022-03-14T19:13:40.318+0800	INFO	routers/router.go:42	1m0sGS
+2022-03-22T20:59:40.345+0800	ERROR	authAPI/auth.go:36	svc.CheckAuth err: auth info does not exist.
+2022-03-22T21:03:02.026+0800	ERROR	authAPI/auth.go:36	svc.CheckAuth err: auth info does not exist.
+2022-03-22T21:06:05.512+0800	ERROR	articlesAPI/article.go:38	app.BindAndValid errs: CreatedBy为必填字段
+2022-03-22T21:14:25.496+0800	ERROR	authAPI/auth.go:36	svc.CheckAuth err: auth info does not exist.
+2022-03-23T06:26:40.658+0800	ERROR	authAPI/auth.go:28	app.BindAndValid errs: AppKey为必填字段,AppSecret为必填字段
+2022-03-23T06:29:28.538+0800	ERROR	authAPI/auth.go:36	svc.CheckAuth err: auth info does not exist
+2022-03-23T06:29:36.334+0800	ERROR	authAPI/auth.go:36	svc.CheckAuth err: auth info does not exist

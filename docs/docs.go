@@ -695,28 +695,30 @@ const docTemplate = `{
                 }
             }
         },
-        "/auth": {
+        "/auth/login": {
             "post": {
-                "description": "获取Token（临时使用的API）",
+                "description": "登录，获取Token",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "Token验证"
+                    "账户管理"
                 ],
-                "summary": "获取Token",
+                "summary": "登录",
                 "parameters": [
                     {
                         "type": "string",
+                        "default": "Hanmur",
                         "description": "认证账号",
-                        "name": "app_key",
+                        "name": "auth_name",
                         "in": "formData",
                         "required": true
                     },
                     {
                         "type": "string",
+                        "default": "Hanmur_Goose",
                         "description": "认证密码",
-                        "name": "app_secret",
+                        "name": "auth_code",
                         "in": "formData",
                         "required": true
                     }

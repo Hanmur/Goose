@@ -507,18 +507,20 @@ paths:
       summary: 获取单个标签
       tags:
       - 标签管理
-  /auth:
+  /auth/login:
     post:
-      description: 获取Token（临时使用的API）
+      description: 登录，获取Token
       parameters:
-      - description: 认证账号
+      - default: Hanmur
+        description: 认证账号
         in: formData
-        name: app_key
+        name: auth_name
         required: true
         type: string
-      - description: 认证密码
+      - default: Hanmur_Goose
+        description: 认证密码
         in: formData
-        name: app_secret
+        name: auth_code
         required: true
         type: string
       produces:
@@ -536,9 +538,9 @@ paths:
           description: 内部错误
           schema:
             $ref: '#/definitions/errorCode.Error'
-      summary: 获取Token
+      summary: 登录
       tags:
-      - Token验证
+      - 账户管理
   /upload/file:
     post:
       description: 文件上传，目前仅支持图片

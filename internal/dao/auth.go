@@ -9,7 +9,7 @@ func (d *Dao) GetAuth(appKey, appSecret string) (model.Auth, error) {
 	db := d.engine
 
 	// auth校验
-	db = db.Where("app_key = ? AND app_secret = ? AND is_del = ?", appKey, appSecret, 0)
+	db = db.Where("binary auth_name = ? AND binary auth_code = ? AND is_del = ?", appKey, appSecret, 0)
 
 	// auth获取
 	var auth model.Auth

@@ -49,27 +49,31 @@ func NewRouter() *gin.Engine {
 	apiUpload.Use(middleware.JWT()).POST("/file", uploadAPI.NewUpload().UploadFile)
 
 	// 注册Token认证的API
-	router.POST("/auth", authAPI.GetAuth)
+	auth := authAPI.NewAuth()
+	apiAuth := router.Group("/auth")
+	{
+		apiAuth.POST("/login", auth.CheckIn)
+	}
 
-	// 注册文章管理API
+	// 注册服务API
 	article := articlesAPI.NewArticle()
 	tag := articlesAPI.NewTag()
-	apiArticle := router.Group("/api/v1")
-	apiArticle.Use(middleware.JWT())
+	apiService := router.Group("/api/v1")
+	apiService.Use(middleware.JWT())
 	{
-		apiArticle.POST("/tags", tag.Create)
-		apiArticle.DELETE("/tags/:id", tag.Delete)
-		apiArticle.PUT("/tags/:id", tag.Update)
-		apiArticle.PATCH("/tags/:id/state", tag.Update)
-		apiArticle.GET("/tags/:id", tag.Get)
-		apiArticle.GET("/tags", tag.List)
+		apiService.POST("/tags", tag.Create)
+		apiService.DELETE("/tags/:id", tag.Delete)
+		apiService.PUT("/tags/:id", tag.Update)
+		apiService.PATCH("/tags/:id/state", tag.Update)
+		apiService.GET("/tags/:id", tag.Get)
+		apiService.GET("/tags", tag.List)
 
-		apiArticle.POST("/article", article.Create)
-		apiArticle.DELETE("/article/:id", article.Delete)
-		apiArticle.PUT("/article/:id", article.Update)
-		apiArticle.PATCH("/article/:id/state", article.Update)
-		apiArticle.GET("/article/:id", article.Get)
-		apiArticle.GET("/article", article.List)
+		apiService.POST("/article", article.Create)
+		apiService.DELETE("/article/:id", article.Delete)
+		apiService.PUT("/article/:id", article.Update)
+		apiService.PATCH("/article/:id/state", article.Update)
+		apiService.GET("/article/:id", article.Get)
+		apiService.GET("/article", article.List)
 	}
 
 	return router

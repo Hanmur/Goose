@@ -8,19 +8,24 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type Auth struct{}
 
-//GetAuth
-// @Summary  	获取Token
-// @Description	获取Token（临时使用的API）
-// @Tags	 	Token验证
+func NewAuth() Auth {
+	return Auth{}
+}
+
+//CheckIn
+// @Summary  	登录
+// @Description	登录，获取Token
+// @Tags	 	账户管理
 // @Produce  	json
-// @Param    	app_key       	formData     string   	true  	"认证账号" 	Enum("Hanmur")
-// @Param    	app_secret  	formData     string   	true  	"认证密码" 	Enum("Hanmur_goose)
+// @Param    	auth_name   formData     string   	true  	"认证账号" 	default(Hanmur)
+// @Param    	auth_code  	formData     string   	true  	"认证密码" 	default(Hanmur_Goose)
 // @Success  	200        {object}  string      		"成功"
 // @Failure  	400        {object}  errorCode.Error  	"请求错误"
 // @Failure  	500        {object}  errorCode.Error  	"内部错误"
-// @Router   	/auth [POST]
-func GetAuth(c *gin.Context) {
+// @Router   	/auth/login [POST]
+func (auth Auth) CheckIn(c *gin.Context) {
 	param := service.AuthRequest{}
 	response := app.NewResponse(c)
 	valid, errs := app.BindAndValid(c, &param)
@@ -38,7 +43,7 @@ func GetAuth(c *gin.Context) {
 		return
 	}
 
-	token, err := app.GenerateToken(param.AppKey, param.AppSecret)
+	token, err := app.GenerateToken(param.AuthName, param.AuthCode)
 	if err != nil {
 		global.Logger.ErrorF("app.GenerateToken err: %v", err)
 		response.ToErrorResponse(errorCode.UnauthorizedTokenGenerate)

@@ -3,13 +3,13 @@ package service
 import "errors"
 
 type AuthRequest struct {
-	AppKey    string `form:"app_key" binding:"required"`
-	AppSecret string `form:"app_secret" binding:"required"`
+	AuthName string `form:"auth_name" binding:"required"`
+	AuthCode string `form:"auth_code" binding:"required"`
 }
 
 //CheckAuth 确认Auth是否存在
 func (svc *Service) CheckAuth(param *AuthRequest) error {
-	auth, err := svc.dao.GetAuth(param.AppKey, param.AppSecret)
+	auth, err := svc.dao.GetAuth(param.AuthName, param.AuthCode)
 	if err != nil {
 		return err
 	}
@@ -18,5 +18,5 @@ func (svc *Service) CheckAuth(param *AuthRequest) error {
 		return nil
 	}
 
-	return errors.New("auth info does not exist.")
+	return errors.New("auth info does not exist")
 }
