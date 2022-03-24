@@ -23,6 +23,11 @@ func init() {
 		log.Fatalf("init.setupDBEngine err: %v", err)
 	}
 
+	err = setupRedisPool()
+	if err != nil {
+		log.Fatalf("init.setupRedisPool err: %v", err)
+	}
+
 	err = setupLogger()
 	if err != nil {
 		log.Fatalf("init.setupLogger err: %v", err)
@@ -32,7 +37,7 @@ func init() {
 //Swagger设置
 // @Title Goose谷声
 // @Version 1.0
-// @Schemes http https
+// @Schemes http://localhost:8000/swagger/index.html
 // @Description 简单的API描述文档
 // @contact.name Hanmur
 // @contact.url https://hanmur.cn/
@@ -85,6 +90,11 @@ func setupSetting() error {
 		return err
 	}
 
+	err = sets.ReadSection("RedisPool", &global.RedisPoolSetting)
+	if err != nil {
+		return err
+	}
+
 	global.JWTSetting.Expire *= time.Second
 	global.ServerSetting.ReadTimeout *= time.Second
 	global.ServerSetting.WriteTimeout *= time.Second
@@ -95,6 +105,16 @@ func setupSetting() error {
 func setupDBEngine() error {
 	var err error
 	global.DBEngine, err = dao.NewDBEngine(global.DatabaseSetting)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func setupRedisPool() error {
+	var err error
+	global.RedisPool, err = dao.NewRedisEngine(global.RedisPoolSetting)
 	if err != nil {
 		return err
 	}

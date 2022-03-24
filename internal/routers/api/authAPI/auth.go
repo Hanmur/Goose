@@ -3,6 +3,7 @@ package authAPI
 import (
 	"Goose/global"
 	"Goose/internal/service"
+	"Goose/internal/service/validator"
 	"Goose/pkg/app"
 	"Goose/pkg/errorCode"
 	"github.com/gin-gonic/gin"
@@ -26,7 +27,8 @@ func NewAuth() Auth {
 // @Failure  	500        {object}  errorCode.Error  	"内部错误"
 // @Router   	/auth/login [POST]
 func (auth Auth) CheckIn(c *gin.Context) {
-	param := service.AuthRequest{}
+	// 参数校验
+	param := validator.AuthRequest{}
 	response := app.NewResponse(c)
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
@@ -35,6 +37,7 @@ func (auth Auth) CheckIn(c *gin.Context) {
 		return
 	}
 
+	// 账户检测
 	svc := service.New(c.Request.Context())
 	err := svc.CheckAuth(&param)
 	if err != nil {
@@ -43,6 +46,7 @@ func (auth Auth) CheckIn(c *gin.Context) {
 		return
 	}
 
+	// Token生成
 	token, err := app.GenerateToken(param.AuthName, param.AuthCode)
 	if err != nil {
 		global.Logger.ErrorF("app.GenerateToken err: %v", err)
@@ -50,6 +54,7 @@ func (auth Auth) CheckIn(c *gin.Context) {
 		return
 	}
 
+	// 响应
 	response.ToResponse(gin.H{
 		"token": token,
 	})

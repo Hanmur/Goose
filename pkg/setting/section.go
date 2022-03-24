@@ -56,6 +56,15 @@ type EmailSettingS struct {
 	To       []string
 }
 
+//RedisPoolSettingS Redis池设置
+type RedisPoolSettingS struct {
+	MaxIdle     int
+	MaxActive   int
+	IdleTimeout time.Duration
+	Host        string
+	Protocol    string
+}
+
 //ReadSection 设置段读取
 func (setting *Setting) ReadSection(key string, value interface{}) error {
 	err := setting.vp.UnmarshalKey(key, value)

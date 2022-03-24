@@ -12,12 +12,12 @@ type Dao struct {
 	engine *gorm.DB
 }
 
-func New(engine *gorm.DB) *Dao {
+func NewDao(engine *gorm.DB) *Dao {
 	return &Dao{engine: engine}
 }
 
 //NewDBEngine 初始化数据库驱动
-func NewDBEngine(databaseSetting *setting.DatabaseSettingS) (*gorm.DB, error){
+func NewDBEngine(databaseSetting *setting.DatabaseSettingS) (*gorm.DB, error) {
 	s := "%s:%s@tcp(%s)/%s?charset=%s&parseTime=%t&loc=Local"
 	db, err := gorm.Open(databaseSetting.DBType,
 		fmt.Sprintf(s,
@@ -28,11 +28,11 @@ func NewDBEngine(databaseSetting *setting.DatabaseSettingS) (*gorm.DB, error){
 			databaseSetting.Charset,
 			databaseSetting.ParseTime,
 		))
-	if err != nil{
+	if err != nil {
 		return nil, err
 	}
 
-	if global.ServerSetting.RunMode == "debug"{
+	if global.ServerSetting.RunMode == "debug" {
 		db.LogMode(true)
 	}
 	db.SingularTable(true)
@@ -110,5 +110,3 @@ func addExtraSpaceIfExist(str string) string {
 	}
 	return ""
 }
-
-

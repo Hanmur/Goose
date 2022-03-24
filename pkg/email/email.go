@@ -33,3 +33,18 @@ func (email *Email) SendMail(to []string, subject, body string) error {
 	dialer.TLSConfig = &tls.Config{InsecureSkipVerify: email.IsSSL}
 	return dialer.DialAndSend(message)
 }
+
+//defailtMailer := email.NewEmail(&email.SMTPInfo{
+//	Host:     global.EmailSetting.Host,
+//	Port:     global.EmailSetting.Port,
+//	IsSSL:    global.EmailSetting.IsSSL,
+//	UserName: global.EmailSetting.UserName,
+//	Password: global.EmailSetting.Password,
+//	From:     global.EmailSetting.From,
+//})
+//var mailTo []string
+//mailTo = append(mailTo, "1466046208@qq.com")
+//err = defailtMailer.SendMail(mailTo, "Test", "We are trying to send a email.")
+//if err != nil{
+//	global.Logger.Info("Err send email")
+//}
