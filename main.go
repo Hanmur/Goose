@@ -37,7 +37,7 @@ func init() {
 //Swagger设置
 // @Title Goose谷声
 // @Version 1.0
-// @Schemes http://localhost:8000/swagger/index.html
+// @Schemes http
 // @Description 简单的API描述文档
 // @contact.name Hanmur
 // @contact.url https://hanmur.cn/

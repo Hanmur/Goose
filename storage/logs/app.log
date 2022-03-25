@@ -148,3 +148,19 @@
 2022-03-23T06:26:40.658+0800	ERROR	authAPI/auth.go:28	app.BindAndValid errs: AppKey为必填字段,AppSecret为必填字段
 2022-03-23T06:29:28.538+0800	ERROR	authAPI/auth.go:36	svc.CheckAuth err: auth info does not exist
 2022-03-23T06:29:36.334+0800	ERROR	authAPI/auth.go:36	svc.CheckAuth err: auth info does not exist
+2022-03-26T04:24:22.094+0800	ERROR	authAPI/auth.go:44	svc.CheckAuth err: auth info does not exist
+2022-03-26T05:08:03.808+0800	ERROR	authAPI/auth.go:103	svc.GenerateCheckCode err: 535 Login Fail. Please enter your authorization code to login. More information in http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
+2022-03-26T05:10:11.314+0800	INFO	service/auth.go:52	?
+2022-03-26T05:10:11.565+0800	ERROR	authAPI/auth.go:103	svc.GenerateCheckCode err: 535 Login Fail. Please enter your authorization code to login. More information in http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
+2022-03-26T05:11:45.538+0800	INFO	service/auth.go:52	?
+2022-03-26T05:11:46.269+0800	ERROR	authAPI/auth.go:103	svc.GenerateCheckCode err: gomail: could not send email 1: gomail: invalid address "Hanmur": mail: missing '@' or angle-addr
+2022-03-26T05:12:53.613+0800	INFO	service/auth.go:52	?
+2022-03-26T05:12:54.277+0800	ERROR	authAPI/auth.go:103	svc.GenerateCheckCode err: gomail: could not send email 1: gomail: invalid address "Hanmur": mail: missing '@' or angle-addr
+2022-03-26T05:14:59.592+0800	INFO	service/auth.go:52	?
+2022-03-26T05:14:59.999+0800	ERROR	authAPI/auth.go:103	svc.GenerateCheckCode err: gomail: could not send email 1: gomail: invalid address "Hanmur": mail: missing '@' or angle-addr
+2022-03-26T05:16:10.158+0800	INFO	service/auth.go:52	?
+2022-03-26T05:16:10.498+0800	ERROR	authAPI/auth.go:103	svc.GenerateCheckCode err: gomail: could not send email 1: gomail: invalid address "Hanmur": mail: missing '@' or angle-addr
+2022-03-26T05:17:18.781+0800	INFO	service/auth.go:52	?
+2022-03-26T05:27:14.747+0800	ERROR	authAPI/auth.go:110	svc.GenerateCheckCode err: gomail: could not send email 1: gomail: invalid address "1466046208@qq.": mail: no angle-addr
+2022-03-26T05:27:32.188+0800	ERROR	authAPI/auth.go:110	svc.GenerateCheckCode err: gomail: could not send email 1: gomail: invalid address "1466046208@": mail: no angle-addr
+2022-03-26T05:27:35.643+0800	ERROR	authAPI/auth.go:110	svc.GenerateCheckCode err: gomail: could not send email 1: gomail: invalid address "1466046208": mail: missing '@' or angle-addr

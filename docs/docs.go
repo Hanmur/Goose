@@ -745,6 +745,48 @@ const docTemplate = `{
                 }
             }
         },
+        "/auth/sendCheck": {
+            "post": {
+                "description": "在Redis中生成验证码并发送该验证码至Redis",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "账户管理"
+                ],
+                "summary": "发送验证码",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "1466046208@qq.com",
+                        "description": "邮箱",
+                        "name": "email",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "请求错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/upload/file": {
             "post": {
                 "security": [
@@ -894,7 +936,7 @@ var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
 	Host:             "",
 	BasePath:         "",
-	Schemes:          []string{"http", "https"},
+	Schemes:          []string{"http"},
 	Title:            "Goose谷声",
 	Description:      "简单的API描述文档",
 	InfoInstanceName: "swagger",

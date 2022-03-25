@@ -52,7 +52,8 @@ func NewRouter() *gin.Engine {
 	auth := authAPI.NewAuth()
 	apiAuth := router.Group("/auth")
 	{
-		apiAuth.POST("/login", auth.CheckIn)
+		apiAuth.POST("/login", auth.Login)
+		apiAuth.POST("/sendCheck", auth.SendCheck)
 	}
 
 	// 注册服务API

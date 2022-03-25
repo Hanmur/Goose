@@ -11,7 +11,7 @@ import (
 )
 
 func Recovery() gin.HandlerFunc {
-	defaultEmail := email.NewEmail(&email.SMTPInfo{
+	var defaultMailer = email.NewEmail(&email.SMTPInfo{
 		Host:     global.EmailSetting.Host,
 		Port:     global.EmailSetting.Port,
 		IsSSL:    global.EmailSetting.IsSSL,
@@ -19,12 +19,13 @@ func Recovery() gin.HandlerFunc {
 		Password: global.EmailSetting.Password,
 		From:     global.EmailSetting.From,
 	})
+
 	return func(context *gin.Context) {
 		defer func() {
 			if err := recover(); err != nil {
 				global.Logger.ErrorF("panic recover err: %v", err)
 
-				err := defaultEmail.SendMail(
+				err := defaultMailer.SendMailToMany(
 					global.EmailSetting.To,
 					fmt.Sprintf("异常抛出，发生时间: %d", time.Now().Unix()),
 					fmt.Sprintf("错误信息: %v", err),

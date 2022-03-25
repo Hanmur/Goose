@@ -541,6 +541,34 @@ paths:
       summary: 登录
       tags:
       - 账户管理
+  /auth/sendCheck:
+    post:
+      description: 在Redis中生成验证码并发送该验证码至Redis
+      parameters:
+      - default: 1466046208@qq.com
+        description: 邮箱
+        in: formData
+        name: email
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      summary: 发送验证码
+      tags:
+      - 账户管理
   /upload/file:
     post:
       description: 文件上传，目前仅支持图片
@@ -579,7 +607,6 @@ paths:
       - 上传
 schemes:
 - http
-- https
 securityDefinitions:
   ApiKeyAuth:
     in: header
