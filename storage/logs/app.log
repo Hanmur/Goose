@@ -164,3 +164,26 @@
 2022-03-26T05:27:14.747+0800	ERROR	authAPI/auth.go:110	svc.GenerateCheckCode err: gomail: could not send email 1: gomail: invalid address "1466046208@qq.": mail: no angle-addr
 2022-03-26T05:27:32.188+0800	ERROR	authAPI/auth.go:110	svc.GenerateCheckCode err: gomail: could not send email 1: gomail: invalid address "1466046208@": mail: no angle-addr
 2022-03-26T05:27:35.643+0800	ERROR	authAPI/auth.go:110	svc.GenerateCheckCode err: gomail: could not send email 1: gomail: invalid address "1466046208": mail: missing '@' or angle-addr
+2022-03-27T02:22:57.186+0800	ERROR	authAPI/auth.go:115	svc.GenerateCheckCode err: 535 Login Fail. Please enter your authorization code to login. More information in http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
+2022-03-27T02:23:46.777+0800	ERROR	authAPI/auth.go:115	svc.GenerateCheckCode err: 535 Login Fail. Please enter your authorization code to login. More information in http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
+2022-03-27T02:25:20.168+0800	ERROR	authAPI/auth.go:115	svc.GenerateCheckCode err: 535 Login Fail. Please enter your authorization code to login. More information in http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
+2022-03-27T02:25:45.241+0800	ERROR	authAPI/auth.go:115	svc.GenerateCheckCode err: 535 Login Fail. Please enter your authorization code to login. More information in http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
+2022-03-27T02:25:48.576+0800	ERROR	authAPI/auth.go:115	svc.GenerateCheckCode err: 535 Login Fail. Please enter your authorization code to login. More information in http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
+2022-03-27T02:30:04.999+0800	INFO	authAPI/auth.go:160	password need aToz :<nil>
+2022-03-27T02:33:52.685+0800	INFO	authAPI/auth.go:167	验证码对应错误
+2022-03-27T03:46:57.038+0800	INFO	authAPI/auth.go:167	验证码对应错误
+2022-03-27T03:47:19.392+0800	ERROR	authAPI/auth.go:144	app.BindAndValid errs: CheckCode长度不能超过6个字符
+2022-03-27T03:47:24.483+0800	INFO	authAPI/auth.go:167	验证码对应错误
+2022-03-27T04:36:58.399+0800	ERROR	service/auth.go:44	svc.CheckEmail err: email does not exist
+2022-03-27T04:37:29.955+0800	ERROR	service/auth.go:44	svc.CheckEmail err: email does not exist
+2022-03-27T04:40:28.971+0800	ERROR	service/auth.go:44	svc.CheckEmail err: email does not exist
+2022-03-27T04:41:21.348+0800	INFO	service/auth.go:44	email does not exist
+2022-03-27T04:41:21.349+0800	ERROR	service/auth.go:45	svc.CheckEmail err: email does not exist
+2022-03-27T04:42:06.730+0800	INFO	service/auth.go:44	hanmur@foxmail.com
+2022-03-27T04:42:06.731+0800	ERROR	service/auth.go:45	svc.CheckEmail err: email does not exist
+2022-03-27T04:42:59.210+0800	INFO	service/auth.go:44	hanmur@foxmail.com
+2022-03-27T04:42:59.210+0800	ERROR	service/auth.go:45	svc.CheckEmail err: email does not exist
+2022-03-27T04:46:34.353+0800	INFO	service/auth.go:44	hanmur@foxmail.com
+2022-03-27T04:46:34.353+0800	ERROR	service/auth.go:45	svc.CheckEmail err: email does not exist
+2022-03-27T04:46:59.127+0800	ERROR	service/auth.go:44	svc.CheckEmail err: email does not exist
+2022-03-27T04:57:43.615+0800	ERROR	service/auth.go:74	svc.CheckEmail err: email does exist

@@ -7,7 +7,6 @@ import (
 	"Goose/pkg/app"
 	"Goose/pkg/errorCode"
 	"github.com/gin-gonic/gin"
-	"regexp"
 )
 
 type Auth struct{}
@@ -82,41 +81,50 @@ func (auth Auth) SendCheck(c *gin.Context) {
 		return
 	}
 
+	// 发送验证码
 	svc := service.New(c.Request.Context())
-
-	// 验证邮箱格式
-	pattern := `^[0-9a-z][_.0-9a-z-]{0,31}@([0-9a-z][0-9a-z-]{0,30}[0-9a-z]\.){1,4}[a-z]{2,4}$`
-	reg, err := regexp.Compile(pattern)
+	err := svc.SendCheck(param.Email)
 	if err != nil {
-		global.Logger.ErrorF("regexp err: ", err)
-		response.ToErrorResponse(errorCode.InvalidParams.WithDetails(err.Error()))
-		return
-	}
-	if !reg.MatchString(param.Email) {
-		response.ToResponse("邮箱格式错误")
-		return
-	}
-
-	// 验证邮箱是否已存在
-	isExist, err := svc.CheckEmail(param.Email)
-	if err != nil {
-		global.Logger.ErrorF("svc.CheckEmail err: %v", err)
-		response.ToErrorResponse(errorCode.ErrorSendCheckFail)
-		return
-	}
-	if isExist {
-		response.ToResponse("账号已存在")
-		return
-	}
-
-	// 验证码生成
-	err = svc.GenerateCheckCode(param.Email)
-	if err != nil {
-		global.Logger.ErrorF("svc.GenerateCheckCode err: %v", err)
-		response.ToErrorResponse(errorCode.ErrorGenerateCheckCodeFail)
+		response.ToErrorResponse(err)
 		return
 	}
 
 	// 进行响应
 	response.ToResponse("验证码发送成功")
+}
+
+//Register
+// @Summary  	注册账号
+// @Description	检验验证码和账号密码格式，进行登录
+// @Tags	 	账户管理
+// @Produce  	json
+// @Param    	auth_name   	formData     string   	true  	"账号"
+// @Param    	auth_code   	formData     string   	true  	"密码"
+// @Param    	email   		formData     string   	true  	"邮箱"
+// @Param    	check_code   	formData     string   	true  	"验证码"
+// @Success  	200        {object}  string      		"成功"
+// @Failure  	400        {object}  errorCode.Error  	"请求错误"
+// @Failure  	500        {object}  errorCode.Error  	"内部错误"
+// @Router   	/auth/register [POST]
+func (auth Auth) Register(c *gin.Context) {
+	// 参数校验
+	param := validator.RegisterRequest{}
+	response := app.NewResponse(c)
+	valid, errs := app.BindAndValid(c, &param)
+	if !valid {
+		global.Logger.ErrorF("app.BindAndValid errs: %v", errs)
+		response.ToErrorResponse(errorCode.InvalidParams.WithDetails(errs.Errors()...))
+		return
+	}
+
+	// 进行注册
+	svc := service.New(c.Request.Context())
+	err := svc.Register(param.AuthName, param.AuthCode, param.Email, param.CheckCode)
+	if err != nil {
+		response.ToErrorResponse(err)
+		return
+	}
+
+	// 进行响应
+	response.ToResponse("注册成功")
 }

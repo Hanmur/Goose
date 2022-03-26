@@ -17,6 +17,13 @@ var (
 
 	ErrorUploadFileFail = NewError(20030001, "上传文件失败")
 
-	ErrorSendCheckFail         = NewError(20040001, "获取验证码失败")
 	ErrorGenerateCheckCodeFail = NewError(20040002, "生成验证码失败")
+	ErrorFormatEmail           = NewError(20040003, "邮箱格式错误")
+
+	ErrorFormatAuthName    = NewError(20040005, "账号格式错误")
+	ErrorFormatAuthCode    = NewError(20040006, "密码格式错误")
+	ErrorNotValidCheckCode = NewError(20040007, "验证码对应错误")
+	ErrorCreateNewAuth     = NewError(20040008, "账号创建失败")
+	ErrorAuthNameExist     = NewError(20040009, "账号名已存在")
+	ErrorEmailExist        = NewError(20040010, "邮箱已存在")
 )
