@@ -7,7 +7,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-//GetAuth 获取账户
+//GetAuth 账户密码校验
 func (d *Dao) GetAuth(appKey, appSecret string) (model.Auth, error) {
 	db := d.engine
 
@@ -108,6 +108,26 @@ func (d *Dao) CreateAuth(authName, authCode, email string) error {
 
 	// 创建标签
 	db = db.Create(&auth)
+
+	return db.Error
+}
+
+//ModifyCode 修改账户密码
+func (d *Dao) ModifyCode(authName, newCode string) error {
+	auth := model.Auth{
+		AuthName: authName,
+		Model:    &model.Model{},
+	}
+	values := map[string]interface{}{
+		"auth_code":   newCode,
+		"modified_by": authName,
+	}
+
+	db := d.engine.Model(auth)
+	// 查找账户
+	db = db.Where("binary auth_name = ? AND is_del = ?", auth.AuthName, 0)
+	// 更新账户
+	db = db.Updates(values)
 
 	return db.Error
 }

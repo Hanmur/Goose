@@ -128,3 +128,38 @@ func (auth Auth) Register(c *gin.Context) {
 	// 进行响应
 	response.ToResponse("注册成功")
 }
+
+//ModifyCode
+// @Summary  	修改密码
+// @Description	修改密码
+// @Tags	 	账户管理
+// @Produce  	json
+// @Param    	auth_name   	formData     string   	true  	"账号"
+// @Param    	auth_code   	formData     string   	true  	"原密码"
+// @Param    	new_code   		formData     string   	true  	"新密码"
+// @Success  	200        {object}  string      		"成功"
+// @Failure  	400        {object}  errorCode.Error  	"请求错误"
+// @Failure  	500        {object}  errorCode.Error  	"内部错误"
+// @Router   	/auth/modifyCode [PUT]
+func (auth Auth) ModifyCode(c *gin.Context) {
+	// 参数校验
+	param := validator.ModifyCodeRequest{}
+	response := app.NewResponse(c)
+	valid, errs := app.BindAndValid(c, &param)
+	if !valid {
+		global.Logger.ErrorF("app.BindAndValid errs: %v", errs)
+		response.ToErrorResponse(errorCode.InvalidParams.WithDetails(errs.Errors()...))
+		return
+	}
+
+	// 修改密码
+	svc := service.New(c.Request.Context())
+	err := svc.ModifyCode(param.AuthName, param.AuthCode, param.NewCode)
+	if err != nil {
+		response.ToErrorResponse(err)
+		return
+	}
+
+	// 进行响应
+	response.ToResponse("修改密码成功")
+}

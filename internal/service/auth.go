@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-//CheckAuth 确认Auth是否存在
+//CheckAuth 账户密码校验
 func (svc *Service) CheckAuth(authName, authCode string) error {
 	auth, err := svc.dao.GetAuth(authName, authCode)
 	if err != nil {
@@ -104,6 +104,31 @@ func (svc *Service) Register(authName, authCode, email, checkCode string) *error
 	if err != nil {
 		global.Logger.ErrorF("svc.CreateAuth err: %v", err)
 		return errorCode.ErrorCreateNewAuth
+	}
+
+	return nil
+}
+
+//ModifyCode 修改密码
+func (svc *Service) ModifyCode(authName, authCode, newCode string) *errorCode.Error {
+	// 验证新密码
+	err := svc.CheckAuthCodeFormat(newCode)
+	if err != nil {
+		return errorCode.ErrorFormatAuthCode
+	}
+
+	// 获取账户
+	err = svc.CheckAuth(authName, authCode)
+	if err != nil {
+		global.Logger.ErrorF("svc.CheckAuth err: %v", err)
+		return errorCode.UnauthorizedAuthNotExist
+	}
+
+	// 修改密码
+	err = svc.dao.ModifyCode(authName, newCode)
+	if err != nil {
+		global.Logger.ErrorF("svc.ModifyCode err: %v", err)
+		return errorCode.ErrorModifyCode
 	}
 
 	return nil

@@ -5,7 +5,6 @@ import (
 	"Goose/pkg/app"
 )
 
-
 //CountArticle 获取文章数
 func (d *Dao) CountArticle(title string, state uint8) (int, error) {
 	article := model.Article{Title: title, State: state}
@@ -35,14 +34,14 @@ func (d *Dao) CountArticle(title string, state uint8) (int, error) {
 //GetArticle 获取文章
 func (d *Dao) GetArticle(title string, createdBy string, state uint8) (*model.Article, error) {
 	tempModel := &model.Model{CreatedBy: createdBy}
-	article := model.Article{Title:title, Model:tempModel, State: state}
+	article := model.Article{Title: title, Model: tempModel, State: state}
 	db := d.engine.Model(&article)
 
 	// 检索名称为name的标签
 	if title != "" {
 		db = db.Where("title = ?", title)
 	}
-	if createdBy != ""{
+	if createdBy != "" {
 		db = db.Where("created_by = ?", createdBy)
 	}
 	// 检索状态为state的标签
@@ -53,7 +52,7 @@ func (d *Dao) GetArticle(title string, createdBy string, state uint8) (*model.Ar
 	db = db.Find(&article)
 
 	// 错误检定
-	if db.Error != nil{
+	if db.Error != nil {
 		return nil, db.Error
 	}
 
@@ -93,12 +92,12 @@ func (d *Dao) GetArticleList(title string, state uint8, page, pageSize int) ([]*
 //CreateArticle 创建新文章
 func (d *Dao) CreateArticle(title, desc, content, coverImageUrl, createdBy string, state uint8) error {
 	article := model.Article{
-		Title: title,
-		Desc: desc,
-		Content: content,
+		Title:         title,
+		Desc:          desc,
+		Content:       content,
 		CoverImageUrl: coverImageUrl,
-		State: state,
-		Model: &model.Model{CreatedBy: createdBy},
+		State:         state,
+		Model:         &model.Model{CreatedBy: createdBy},
 	}
 	db := d.engine
 
@@ -120,14 +119,14 @@ func (d *Dao) UpdateArticle(ID uint32, title, desc, content, coverImageUrl, modi
 	if title != "" {
 		values["title"] = title
 	}
-	if desc != ""{
+	if desc != "" {
 		values["desc"] = desc
 	}
-	if content != ""{
+	if content != "" {
 		values["content"] = content
 	}
-	if coverImageUrl != ""{
-		values["coverImageUrl"] = coverImageUrl
+	if coverImageUrl != "" {
+		values["cover_image_url"] = coverImageUrl
 	}
 
 	db := d.engine.Model(article)

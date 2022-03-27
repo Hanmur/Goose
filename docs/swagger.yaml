@@ -541,6 +541,43 @@ paths:
       summary: 登录
       tags:
       - 账户管理
+  /auth/modifyCode:
+    put:
+      description: 修改密码
+      parameters:
+      - description: 账号
+        in: formData
+        name: auth_name
+        required: true
+        type: string
+      - description: 原密码
+        in: formData
+        name: auth_code
+        required: true
+        type: string
+      - description: 新密码
+        in: formData
+        name: new_code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      summary: 修改密码
+      tags:
+      - 账户管理
   /auth/register:
     post:
       description: 检验验证码和账号密码格式，进行登录

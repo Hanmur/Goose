@@ -26,4 +26,6 @@ var (
 	ErrorCreateNewAuth     = NewError(20040008, "账号创建失败")
 	ErrorAuthNameExist     = NewError(20040009, "账号名已存在")
 	ErrorEmailExist        = NewError(20040010, "邮箱已存在")
+
+	ErrorModifyCode = NewError(20040011, "修改密码失败")
 )

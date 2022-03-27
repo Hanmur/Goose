@@ -187,3 +187,23 @@
 2022-03-27T04:46:34.353+0800	ERROR	service/auth.go:45	svc.CheckEmail err: email does not exist
 2022-03-27T04:46:59.127+0800	ERROR	service/auth.go:44	svc.CheckEmail err: email does not exist
 2022-03-27T04:57:43.615+0800	ERROR	service/auth.go:74	svc.CheckEmail err: email does exist
+2022-03-28T00:14:54.494+0800	ERROR	authAPI/auth.go:151	app.BindAndValid errs: NewCode长度必须至少为4个字符
+2022-03-28T00:17:26.787+0800	INFO	service/auth.go:126	账户获取成功
+2022-03-28T00:20:51.740+0800	INFO	service/auth.go:126	账户获取成功
+2022-03-28T00:21:46.967+0800	INFO	dao/auth.go:126	A
+2022-03-28T00:21:46.968+0800	INFO	dao/auth.go:129	B
+2022-03-28T00:23:05.468+0800	ERROR	service/auth.go:123	svc.CheckAuth err: auth info does not exist
+2022-03-28T00:23:09.308+0800	INFO	dao/auth.go:126	A
+2022-03-28T00:23:09.308+0800	INFO	dao/auth.go:129	B
+2022-03-28T00:24:39.676+0800	INFO	dao/auth.go:129	Hanmur_Test00
+2022-03-28T00:25:32.006+0800	INFO	dao/auth.go:129	Hanmur_Test00
+2022-03-28T00:29:56.216+0800	INFO	dao/auth.go:129	Hanmur_Test00
+2022-03-28T00:29:56.216+0800	INFO	dao/auth.go:132	C
+2022-03-28T00:30:08.013+0800	INFO	dao/auth.go:129	Hanmur_Test00
+2022-03-28T00:47:15.557+0800	INFO	dao/auth.go:130	Hanmur_Test00
+2022-03-28T00:47:15.557+0800	INFO	dao/auth.go:133	C
+2022-03-28T01:07:22.969+0800	INFO	dao/auth.go:130	Hanmur_Test00
+2022-03-28T01:07:22.973+0800	INFO	dao/auth.go:133	C
+2022-03-28T01:09:17.654+0800	ERROR	service/auth.go:123	svc.CheckAuth err: auth info does not exist
+2022-03-28T01:09:19.818+0800	INFO	dao/auth.go:130	Hanmur_Test00
+2022-03-28T01:09:19.858+0800	INFO	dao/auth.go:133	C
