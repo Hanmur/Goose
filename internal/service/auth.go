@@ -38,13 +38,6 @@ func (svc *Service) SendCheck(email string) *errorCode.Error {
 		return errorCode.ErrorFormatEmail
 	}
 
-	// 验证邮箱是否已存在
-	err = svc.CheckNoEmail(email)
-	if err != nil {
-		global.Logger.ErrorF("svc.CheckEmail err: %v", err)
-		return errorCode.ErrorEmailExist
-	}
-
 	// 验证码生成
 	err = svc.GenerateCheckCode(email)
 	if err != nil {
@@ -126,6 +119,30 @@ func (svc *Service) ModifyCode(authName, authCode, newCode string) *errorCode.Er
 
 	// 修改密码
 	err = svc.dao.ModifyCode(authName, newCode)
+	if err != nil {
+		global.Logger.ErrorF("svc.ModifyCode err: %v", err)
+		return errorCode.ErrorModifyCode
+	}
+
+	return nil
+}
+
+//ResetCode 重置密码
+func (svc *Service) ResetCode(email, checkCode string) *errorCode.Error {
+	// 验证验证码
+	err := svc.CheckCheckCode(email, checkCode)
+	if err != nil {
+		return errorCode.ErrorNotValidCheckCode
+	}
+
+	// 获取账户
+	auth, err := svc.dao.GetAuthByEmail(email)
+	if err != nil || auth.ID == 0 {
+		return errorCode.ErrorAuthNoExist
+	}
+
+	// 重置密码
+	err = svc.dao.ModifyCode(auth.AuthName, "Goose_007")
 	if err != nil {
 		global.Logger.ErrorF("svc.ModifyCode err: %v", err)
 		return errorCode.ErrorModifyCode

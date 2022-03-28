@@ -620,6 +620,38 @@ paths:
       summary: 注册账号
       tags:
       - 账户管理
+  /auth/resetCode:
+    put:
+      description: 检测验证码后重置密码
+      parameters:
+      - description: 邮箱
+        in: formData
+        name: email
+        required: true
+        type: string
+      - description: 验证码
+        in: formData
+        name: check_code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      summary: 重置密码
+      tags:
+      - 账户管理
   /auth/sendCheck:
     post:
       description: 在Redis中生成验证码并发送该验证码至Redis

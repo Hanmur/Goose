@@ -56,6 +56,7 @@ func NewRouter() *gin.Engine {
 		apiAuth.POST("/sendCheck", auth.SendCheck)
 		apiAuth.POST("/register", auth.Register)
 		apiAuth.PUT("/modifyCode", auth.ModifyCode)
+		apiAuth.PUT("/resetCode", auth.ResetCode)
 	}
 
 	// 注册服务API

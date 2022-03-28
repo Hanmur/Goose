@@ -163,3 +163,37 @@ func (auth Auth) ModifyCode(c *gin.Context) {
 	// 进行响应
 	response.ToResponse("修改密码成功")
 }
+
+//ResetCode
+// @Summary  	重置密码
+// @Description	检测验证码后重置密码
+// @Tags	 	账户管理
+// @Produce  	json
+// @Param    	email   		formData     string   	true  	"邮箱"
+// @Param    	check_code   	formData     string   	true  	"验证码"
+// @Success  	200        {object}  string      		"成功"
+// @Failure  	400        {object}  errorCode.Error  	"请求错误"
+// @Failure  	500        {object}  errorCode.Error  	"内部错误"
+// @Router   	/auth/resetCode [PUT]
+func (auth Auth) ResetCode(c *gin.Context) {
+	// 参数校验
+	param := validator.ResetCodeRequest{}
+	response := app.NewResponse(c)
+	valid, errs := app.BindAndValid(c, &param)
+	if !valid {
+		global.Logger.ErrorF("app.BindAndValid errs: %v", errs)
+		response.ToErrorResponse(errorCode.InvalidParams.WithDetails(errs.Errors()...))
+		return
+	}
+
+	// 重置密码
+	svc := service.New(c.Request.Context())
+	err := svc.ResetCode(param.Email, param.CheckCode)
+	if err != nil {
+		response.ToErrorResponse(err)
+		return
+	}
+
+	// 进行响应
+	response.ToResponse("重置密码成功")
+}

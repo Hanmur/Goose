@@ -207,3 +207,5 @@
 2022-03-28T01:09:17.654+0800	ERROR	service/auth.go:123	svc.CheckAuth err: auth info does not exist
 2022-03-28T01:09:19.818+0800	INFO	dao/auth.go:130	Hanmur_Test00
 2022-03-28T01:09:19.858+0800	INFO	dao/auth.go:133	C
+2022-03-28T12:53:52.890+0800	ERROR	service/auth.go:44	svc.CheckEmail err: email does exist
+2022-03-28T12:55:18.170+0800	ERROR	authAPI/auth.go:184	app.BindAndValid errs: AuthName为必填字段
