@@ -842,7 +842,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "成功",
+                        "description": "A response",
                         "schema": {
                             "type": "string"
                         }
@@ -857,6 +857,12 @@ const docTemplate = `{
                         "description": "内部错误",
                         "schema": {
                             "$ref": "#/definitions/errorCode.Error"
+                        }
+                    },
+                    "default": {
+                        "description": "A response",
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 }
@@ -932,10 +938,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "成功",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "description": "成功"
                     },
                     "400": {
                         "description": "请求错误",

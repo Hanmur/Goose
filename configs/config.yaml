@@ -21,7 +21,8 @@ Database:
   DBType: mysql
   Username: root   # 填写你的数据库账号
   Password: 123456  # 填写你的数据库密码
-  Host: 127.0.0.1:3306
+  Host: mysql:3306  # Docker连接Mysql
+#  Host: localhost:3306
   DBName: goose
   TablePrefix: goose_
   Charset: utf8
@@ -33,7 +34,8 @@ RedisPool:
   #  MaxActive: 10000      # 最大连接数量
   MaxActive: 0          # 连接池最大连接数量,不确定可以用0（0表示自动定义），按需分配
   IdleTimeout: 300      # 连接关闭时间 300秒 （300秒不使用自动关闭）
-  Host: 127.0.0.1:6379  # Redis连接
+  Host: redis:6379      # Docker连接redis
+#  Host: 127.0.0.1:6379  # Redis连接
   Protocol: tcp         # 协议类型
 JWT:
   Secret: Hanmur

@@ -606,7 +606,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: 成功
+          description: A response
           schema:
             type: string
         "400":
@@ -617,6 +617,10 @@ paths:
           description: 内部错误
           schema:
             $ref: '#/definitions/errorCode.Error'
+        default:
+          description: A response
+          schema:
+            type: string
       summary: 注册账号
       tags:
       - 账户管理
@@ -667,8 +671,6 @@ paths:
       responses:
         "200":
           description: 成功
-          schema:
-            type: string
         "400":
           description: 请求错误
           schema:

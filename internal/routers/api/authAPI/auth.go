@@ -66,7 +66,7 @@ func (auth Auth) Login(c *gin.Context) {
 // @Tags	 	账户管理
 // @Produce  	json
 // @Param    	email   	formData     string   	true  	"邮箱" 	default(1466046208@qq.com)
-// @Success  	200        {object}  string      		"成功"
+// @Success  	200        {object}  nil      			"成功"
 // @Failure  	400        {object}  errorCode.Error  	"请求错误"
 // @Failure  	500        {object}  errorCode.Error  	"内部错误"
 // @Router   	/auth/sendCheck [POST]
@@ -90,7 +90,7 @@ func (auth Auth) SendCheck(c *gin.Context) {
 	}
 
 	// 进行响应
-	response.ToResponse("验证码发送成功")
+	response.ToResponse(gin.H{})
 }
 
 //Register
@@ -102,7 +102,7 @@ func (auth Auth) SendCheck(c *gin.Context) {
 // @Param    	auth_code   	formData     string   	true  	"密码"
 // @Param    	email   		formData     string   	true  	"邮箱"
 // @Param    	check_code   	formData     string   	true  	"验证码"
-// @Success  	200        {object}  string      		"成功"
+// @Success 200,default {string} Response "A response"
 // @Failure  	400        {object}  errorCode.Error  	"请求错误"
 // @Failure  	500        {object}  errorCode.Error  	"内部错误"
 // @Router   	/auth/register [POST]
@@ -137,7 +137,7 @@ func (auth Auth) Register(c *gin.Context) {
 // @Param    	auth_name   	formData     string   	true  	"账号"
 // @Param    	auth_code   	formData     string   	true  	"原密码"
 // @Param    	new_code   		formData     string   	true  	"新密码"
-// @Success  	200        {object}  string      		"成功"
+// @Success  	200        {object}  string	 	     	"成功"
 // @Failure  	400        {object}  errorCode.Error  	"请求错误"
 // @Failure  	500        {object}  errorCode.Error  	"内部错误"
 // @Router   	/auth/modifyCode [PUT]
