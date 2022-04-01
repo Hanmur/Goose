@@ -33,6 +33,7 @@ blog-service
 * MySQL和Redis的基本使用
 
 当然，接下来的部署流程将较为详细的介绍整个部署的过程，因而如果你对上面的知识不大了解也可以将项目运行起来。
+哪一步出现问题可以联系维护者
 ### 部署流程
 #### Docker镜像导入
 * `docker pull gwhanmur/goose:v1.3`
@@ -60,7 +61,7 @@ docker run -p 3307:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
 ##### 数据表导入
 将数据库文件导入容器
 ```shell
-docker cp goose.sql goose:/root/
+docker cp goose.sql mysql:/root/
 ```
 进入容器
 ```shell
@@ -68,13 +69,14 @@ docker exec -it mysql bash
 ```
 导入数据库
 ```shell
-mysql -uroot -p123456 < goose.sql
+mysql -uroot -p123456 CREATE DATABASE goose
+mysql -uroot -p123456 goose < root/goose.sql
 ```
 > 这里的root为你的数据库账号，123456为你的数据库密码
 
 #### 服务运行
 ```shell
-docker run --link mysql:mysql --link redis:redis --name goose -p 8000:8000 goose:v1.3
+docker run --link mysql:mysql --link redis:redis --name goose -p 8000:8000 gwhanmur/goose:v1.3
 ```
 其中，
 * `-–name`：容器名，此处命名为goose
