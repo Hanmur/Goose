@@ -5,13 +5,17 @@ import (
 )
 
 //Model 通用文本创建模型
-type Model struct{
-	ID			uint32 `gorm:"primary_key" json:"id"`
-	CreatedBy	string `json:"created_by"`
-	ModifiedBy	string `json:"modified_by"`
-	CreatedOn  	uint32 `json:"created_on"`
-	ModifiedOn 	uint32 `json:"modified_on"`
-	DeletedOn  	uint32 `json:"deleted_on"`
-	IsDel      	uint8  `json:"is_del"`
+type Model struct {
+	ID         uint32 `gorm:"primary_key" json:"id"`
+	CreatedBy  string `json:"created_by"`
+	ModifiedBy string `json:"modified_by"`
+	CreatedOn  uint32 `json:"created_on"`
+	ModifiedOn uint32 `json:"modified_on"`
+	DeletedOn  uint32 `json:"deleted_on"`
+	IsDel      uint8  `json:"is_del"`
 }
 
+//ConnectModel 通用连接器模型
+type ConnectModel struct {
+	ID uint32 `gorm:"primary_key" json:"id"`
+}

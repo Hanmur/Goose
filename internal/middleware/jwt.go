@@ -13,6 +13,8 @@ func JWT() gin.HandlerFunc {
 		var (
 			token string
 			ecode = errorCode.Success
+			auth  *app.Claims
+			err   error
 		)
 		if s, exist := context.GetQuery("token"); exist {
 			token = s
@@ -20,9 +22,9 @@ func JWT() gin.HandlerFunc {
 			token = context.GetHeader("token")
 		}
 		if token == "" {
-			ecode = errorCode.InvalidParams
+			ecode = errorCode.ParamsTokenError
 		} else {
-			_, err := app.ParseToken(token)
+			auth, err = app.ParseToken(token)
 			if err != nil {
 				switch err.(*jwt.ValidationError).Errors {
 				case jwt.ValidationErrorExpired:
@@ -33,13 +35,14 @@ func JWT() gin.HandlerFunc {
 			}
 		}
 
-		if ecode != errorCode.Success {
+		if ecode != errorCode.Success || auth == nil {
 			response := app.NewResponse(context)
 			response.ToErrorResponse(ecode)
 			context.Abort()
 			return
 		}
 
+		context.Set("auth_name", auth.AuthName)
 		context.Next()
 	}
 }

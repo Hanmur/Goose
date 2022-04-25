@@ -23,7 +23,7 @@ func GenerateToken(authName, authCode string) (string, error) {
 	nowTime := time.Now()
 	expireTime := nowTime.Add(global.JWTSetting.Expire)
 	claims := Claims{
-		AuthName: util.EncodeMD5(authName),
+		AuthName: authName,
 		AuthCode: util.EncodeMD5(authCode),
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expireTime.Unix(),
