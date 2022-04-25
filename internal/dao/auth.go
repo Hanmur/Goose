@@ -62,7 +62,7 @@ func (d *Dao) GetAuthByEmail(email string) (model.Auth, error) {
 }
 
 //GenerateCheckCode 生成验证码
-func (pool *Pool) GenerateCheckCode(key string, val string) error {
+func (pool *Pool) GenerateCheckCode(key, val string) error {
 	conn := pool.Pool.Get()
 	defer func() {
 		_ = conn.Close()
@@ -78,18 +78,18 @@ func (pool *Pool) GenerateCheckCode(key string, val string) error {
 }
 
 //CheckCheckCode 验证码校验
-func (pool *Pool) CheckCheckCode(email, checkCode string) error {
+func (pool *Pool) CheckCheckCode(key, val string) error {
 	conn := pool.Pool.Get()
 	defer func() {
 		_ = conn.Close()
 	}()
 
-	trueCode, err := redis.String(conn.Do("Get", email))
+	trueCode, err := redis.String(conn.Do("Get", key))
 	if err != nil {
 		return err
 	}
 
-	if trueCode != checkCode {
+	if trueCode != val {
 		return errors.New("验证码对应错误")
 	}
 

@@ -66,13 +66,14 @@ func (auth Auth) Login(c *gin.Context) {
 // @Tags	 	账户管理
 // @Produce  	json
 // @Param    	email   	formData     string   	true  	"邮箱" 	default(1466046208@qq.com)
+// @Param		prefix		formData	 string		true	"验证码类型"	Enums(regis, reset) default(regis)
 // @Success  	200        {object}  nil      			"成功"
 // @Failure  	400        {object}  errorCode.Error  	"请求错误"
 // @Failure  	500        {object}  errorCode.Error  	"内部错误"
 // @Router   	/auth/sendCheck [POST]
 func (auth Auth) SendCheck(c *gin.Context) {
 	// 参数校验
-	param := validator.GetEmailRequest{}
+	param := validator.SendCheckRequest{}
 	response := app.NewResponse(c)
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
@@ -83,7 +84,7 @@ func (auth Auth) SendCheck(c *gin.Context) {
 
 	// 发送验证码
 	svc := service.New(c.Request.Context())
-	err := svc.SendCheck(param.Email)
+	err := svc.SendCheck(param.Email, param.Prefix)
 	if err != nil {
 		response.ToErrorResponse(err)
 		return

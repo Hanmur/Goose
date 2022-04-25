@@ -666,6 +666,15 @@ paths:
         name: email
         required: true
         type: string
+      - default: regis
+        description: 验证码类型
+        enum:
+        - regis
+        - reset
+        in: formData
+        name: prefix
+        required: true
+        type: string
       produces:
       - application/json
       responses:

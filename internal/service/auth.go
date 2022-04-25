@@ -26,7 +26,7 @@ func (svc *Service) CheckAuth(authName, authCode string) error {
 }
 
 //SendCheck 发送验证码
-func (svc *Service) SendCheck(email string) *errorCode.Error {
+func (svc *Service) SendCheck(email, prefix string) *errorCode.Error {
 	// 验证邮箱格式
 	pattern := `^[0-9a-z][_.0-9a-z-]{0,31}@([0-9a-z][0-9a-z-]{0,30}[0-9a-z]\.){1,4}[a-z]{2,4}$`
 	reg, err := regexp.Compile(pattern)
@@ -39,7 +39,7 @@ func (svc *Service) SendCheck(email string) *errorCode.Error {
 	}
 
 	// 验证码生成
-	err = svc.GenerateCheckCode(email)
+	err = svc.GenerateCheckCode(email, prefix)
 	if err != nil {
 		global.Logger.ErrorF("svc.GenerateCheckCode err: %v", err)
 		return errorCode.ErrorGenerateCheckCodeFail
@@ -87,7 +87,7 @@ func (svc *Service) Register(authName, authCode, email, checkCode string) *error
 	}
 
 	// 验证码校验
-	err = svc.CheckCheckCode(email, checkCode)
+	err = svc.CheckCheckCode(email, checkCode, "regis")
 	if err != nil {
 		return errorCode.ErrorNotValidCheckCode
 	}
@@ -130,7 +130,7 @@ func (svc *Service) ModifyCode(authName, authCode, newCode string) *errorCode.Er
 //ResetCode 重置密码
 func (svc *Service) ResetCode(email, checkCode string) *errorCode.Error {
 	// 验证验证码
-	err := svc.CheckCheckCode(email, checkCode)
+	err := svc.CheckCheckCode(email, checkCode, "reset")
 	if err != nil {
 		return errorCode.ErrorNotValidCheckCode
 	}
@@ -184,13 +184,16 @@ func (svc *Service) CheckNoAuthName(authName string) error {
 }
 
 //GenerateCheckCode 生成验证码
-func (svc *Service) GenerateCheckCode(mail string) error {
+func (svc *Service) GenerateCheckCode(mail, prefix string) error {
 	// 生成验证码
 	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 	checkCode := fmt.Sprintf("%06v", rnd.Int31n(1000000))
 
 	// 存入Redis
-	err := svc.pool.GenerateCheckCode(mail, checkCode)
+	key := prefix + "_" + mail
+	val := checkCode
+
+	err := svc.pool.GenerateCheckCode(key, val)
 	if err != nil {
 		return err
 	}
@@ -208,7 +211,7 @@ func (svc *Service) GenerateCheckCode(mail string) error {
 	content := fmt.Sprintf(`
 	<div>
 		<div>
-			谷声的新朋友，你好呀~
+			谷声的朋友，你好呀~
 		</div>
 		<div style="padding: 8px 40px 8px 50px;">
 			<p>您于 %s 提交了邮箱验证，本次验证码为<u><strong>%s</strong></u>，为了保证账号安全，验证码有效期为5分钟。</p>
@@ -261,8 +264,11 @@ func (svc *Service) CheckAuthCodeFormat(authCode string) error {
 }
 
 //CheckCheckCode 校验验证码
-func (svc *Service) CheckCheckCode(email, checkCode string) error {
-	err := svc.pool.CheckCheckCode(email, checkCode)
+func (svc *Service) CheckCheckCode(email, checkCode, prefix string) error {
+	key := prefix + "_" + email
+	val := checkCode
+
+	err := svc.pool.CheckCheckCode(key, val)
 	if err != nil {
 		return err
 	}

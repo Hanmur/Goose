@@ -934,6 +934,18 @@ const docTemplate = `{
                         "name": "email",
                         "in": "formData",
                         "required": true
+                    },
+                    {
+                        "enum": [
+                            "regis",
+                            "reset"
+                        ],
+                        "type": "string",
+                        "default": "regis",
+                        "description": "验证码类型",
+                        "name": "prefix",
+                        "in": "formData",
+                        "required": true
                     }
                 ],
                 "responses": {

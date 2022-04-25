@@ -212,3 +212,4 @@
 2022-03-29T16:01:02.002+0800	ERROR	authAPI/auth.go:44	svc.CheckAuth err: auth info does not exist
 2022-03-29T16:01:21.587+0800	ERROR	authAPI/auth.go:184	app.BindAndValid errs: CheckCode长度必须至少为6个字符
 2022-03-30T01:22:12.573+0800	ERROR	service/auth.go:44	svc.GenerateCheckCode err: dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2022-04-25T17:12:19.568+0800	ERROR	service/auth.go:44	svc.GenerateCheckCode err: dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
