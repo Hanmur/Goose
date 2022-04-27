@@ -213,3 +213,15 @@
 2022-03-29T16:01:21.587+0800	ERROR	authAPI/auth.go:184	app.BindAndValid errs: CheckCode长度必须至少为6个字符
 2022-03-30T01:22:12.573+0800	ERROR	service/auth.go:44	svc.GenerateCheckCode err: dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
 2022-04-25T17:12:19.568+0800	ERROR	service/auth.go:44	svc.GenerateCheckCode err: dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2022-04-27T14:42:45.637+0800	ERROR	articlesAPI/article.go:125	app.BindAndValid errs: AuthName为必填字段
+2022-04-27T15:50:46.760+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
+2022-04-27T15:50:50.481+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
+2022-04-27T15:50:52.147+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
+2022-04-27T15:50:52.927+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
+2022-04-27T15:50:53.525+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
+2022-04-27T15:50:57.504+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
+2022-04-27T15:51:01.069+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
+2022-04-27T15:51:02.087+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
+2022-04-27T15:51:03.857+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
+2022-04-27T15:51:04.867+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
+2022-04-27T15:51:42.512+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限

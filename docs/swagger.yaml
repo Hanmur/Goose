@@ -138,13 +138,6 @@ paths:
         in: formData
         name: state
         type: integer
-      - description: 创建者
-        in: formData
-        maxLength: 100
-        minLength: 1
-        name: created_by
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -233,7 +226,6 @@ paths:
         maxLength: 100
         minLength: 3
         name: modified_by
-        required: true
         type: string
       produces:
       - application/json

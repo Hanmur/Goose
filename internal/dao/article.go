@@ -139,6 +139,22 @@ func (d *Dao) UpdateArticle(ID uint32, title, desc, content, coverImageUrl, modi
 	return db.Error
 }
 
+//GetArticleByID 通过ID获取文章
+func (d *Dao) GetArticleByID(id uint32) (*model.Article, error) {
+	article := model.Article{Model: &model.Model{ID: id}}
+	db := d.engine.Model(article)
+
+	// 检索标签
+	db = db.Where("id = ? AND is_del = ?", article.Model.ID, 0)
+	// 删除标签
+	db = db.Find(&article)
+	if db.Error != nil {
+		return nil, db.Error
+	}
+
+	return &article, nil
+}
+
 //DeleteArticle 删除文章
 func (d *Dao) DeleteArticle(id uint32) error {
 	article := model.Article{Model: &model.Model{ID: id}}

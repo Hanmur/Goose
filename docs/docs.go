@@ -145,15 +145,6 @@ const docTemplate = `{
                         "description": "状态",
                         "name": "state",
                         "in": "formData"
-                    },
-                    {
-                        "maxLength": 100,
-                        "minLength": 1,
-                        "type": "string",
-                        "description": "创建者",
-                        "name": "created_by",
-                        "in": "formData",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -244,8 +235,7 @@ const docTemplate = `{
                         "type": "string",
                         "description": "修改者",
                         "name": "modified_by",
-                        "in": "formData",
-                        "required": true
+                        "in": "formData"
                     }
                 ],
                 "responses": {

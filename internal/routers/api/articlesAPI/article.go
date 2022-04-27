@@ -112,7 +112,6 @@ func (article Article) List(context *gin.Context) {
 // @Param		content			formData	string	true	"文章内容"	minlength(1)
 // @Param		cover_image_url	formData	string	false	"封面路径"	maxlength(100)
 // @Param    	state       	formData    int       false  	"状态"    	Enums(0, 1)   default(1)
-// @Param    	created_by  	formData    string    true   	"创建者"   	minlength(1)  maxlength(100)
 // @Success  	200  {string}  string         "成功"
 // @Failure  	400  {object}  errorCode.Error  "请求错误"
 // @Failure  	500  {object}  errorCode.Error  "内部错误"
@@ -127,6 +126,8 @@ func (article Article) Create(context *gin.Context) {
 		response.ToErrorResponse(errorCode.InvalidParams.WithDetails(errs.Errors()...))
 		return
 	}
+	// 获取账户
+	authName := context.MustGet("auth_name").(string)
 
 	// 创建文章
 	svc := service.New(context.Request.Context())
@@ -135,7 +136,7 @@ func (article Article) Create(context *gin.Context) {
 		param.Desc,
 		param.Content,
 		param.CoverImageUrl,
-		param.CreatedBy,
+		authName,
 		param.State,
 	)
 	if err != nil {
@@ -161,7 +162,7 @@ func (article Article) Create(context *gin.Context) {
 // @Param		content			formData	string	false	"文章内容"
 // @Param		cover_image_url	formData	string	false	"封面路径"	maxlength(100)
 // @Param    	state        	formData    int     false  "状态"    Enums(0, 1)   default(1)
-// @Param    	modified_by  	formData    string  true   "修改者"   minlength(3)  maxlength(100)
+// @Param    	modified_by  	formData    string  false   "修改者"   minlength(3)  maxlength(100)
 // @Success  	200          {array}   model.Article      "成功"
 // @Failure  	400          {object}  errorCode.Error  "请求错误"
 // @Failure  	500          {object}  errorCode.Error  "内部错误"
@@ -176,6 +177,15 @@ func (article Article) Update(context *gin.Context) {
 	if !valid {
 		global.Logger.ErrorF("app.BindAndValid errs: %v", errs)
 		response.ToErrorResponse(errorCode.InvalidParams.WithDetails(errs.Errors()...))
+		return
+	}
+
+	// 检验修改者权限
+	authName := context.MustGet("auth_name").(string)
+	if param.ModifiedBy == "" {
+		param.ModifiedBy = authName
+	} else if authName != param.ModifiedBy {
+		response.ToErrorResponse(errorCode.ErrorUpdateArticlePower)
 		return
 	}
 
@@ -223,12 +233,14 @@ func (article Article) Delete(context *gin.Context) {
 		return
 	}
 
+	// 获取账户
+	authName := context.MustGet("auth_name").(string)
+
 	// 删除标签
 	svc := service.New(context.Request.Context())
-	err := svc.DeleteArticle(param.ID)
+	err := svc.DeleteArticle(param.ID, authName)
 	if err != nil {
-		global.Logger.ErrorF("svc.DeleteArticle err: %v", err)
-		response.ToErrorResponse(errorCode.ErrorDeleteArticleFail)
+		response.ToErrorResponse(err)
 		return
 	}
 

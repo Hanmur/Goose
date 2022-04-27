@@ -14,6 +14,8 @@ var (
 	ErrorDeleteArticleFail  = NewError(20020004, "删除文章失败")
 	ErrorCountArticleFail   = NewError(20020005, "统计文章失败")
 	ErrorGetArticleFail     = NewError(20020006, "获取文章失败")
+	ErrorUpdateArticlePower = NewError(20020007, "更新文章无权限")
+	ErrorDeleteArticlePower = NewError(20020008, "删除文章无权限")
 
 	ErrorUploadFileFail = NewError(20030001, "上传文件失败")
 
