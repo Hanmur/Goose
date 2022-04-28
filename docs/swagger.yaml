@@ -59,13 +59,48 @@ info:
   version: "1.0"
 paths:
   /api/v1/article:
+    delete:
+      description: 删除文章
+      parameters:
+      - description: 文章 ID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 删除文章
+      tags:
+      - 文章管理
     get:
-      description: 获取多个文章
+      description: 获取单个文章
       parameters:
       - description: 文章名称
         in: query
         maxLength: 100
         name: title
+        required: true
+        type: string
+      - description: 文章作者
+        in: query
+        maxLength: 100
+        name: created_by
+        required: true
         type: string
       - default: 1
         description: 状态
@@ -74,14 +109,6 @@ paths:
         - 1
         in: query
         name: state
-        type: integer
-      - description: 页码
-        in: query
-        name: page
-        type: integer
-      - description: 每页数量
-        in: query
-        name: page_size
         type: integer
       produces:
       - application/json
@@ -100,7 +127,7 @@ paths:
             $ref: '#/definitions/errorCode.Error'
       security:
       - ApiKeyAuth: []
-      summary: 获取多个文章
+      summary: 获取单个文章
       tags:
       - 文章管理
     post:
@@ -158,58 +185,29 @@ paths:
       summary: 创建文章
       tags:
       - 文章管理
-  /api/v1/article/{id}:
-    delete:
-      description: 删除文章
-      parameters:
-      - description: 文章 ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 成功
-          schema:
-            type: string
-        "400":
-          description: 请求错误
-          schema:
-            $ref: '#/definitions/errorCode.Error'
-        "500":
-          description: 内部错误
-          schema:
-            $ref: '#/definitions/errorCode.Error'
-      security:
-      - ApiKeyAuth: []
-      summary: 删除文章
-      tags:
-      - 文章管理
     put:
       description: 更新文章
       parameters:
       - description: 文章 ID
-        in: path
+        in: query
         name: id
         required: true
         type: integer
       - description: 文章标题
-        in: formData
+        in: query
         maxLength: 100
         name: title
         type: string
       - description: 文章描述
-        in: formData
+        in: query
         name: desc
         type: string
       - description: 文章内容
-        in: formData
+        in: query
         name: content
         type: string
       - description: 封面路径
-        in: formData
+        in: query
         maxLength: 100
         name: cover_image_url
         type: string
@@ -218,11 +216,11 @@ paths:
         enum:
         - 0
         - 1
-        in: formData
+        in: query
         name: state
         type: integer
       - description: 修改者
-        in: formData
+        in: query
         maxLength: 100
         minLength: 3
         name: modified_by
@@ -249,19 +247,14 @@ paths:
       summary: 更新文章
       tags:
       - 文章管理
-  /api/v1/article/{title}:
+  /api/v1/article/multi:
     get:
-      description: 获取单个文章
+      description: 获取多个文章
       parameters:
       - description: 文章名称
         in: query
         maxLength: 100
         name: title
-        type: string
-      - description: 文章作者
-        in: query
-        maxLength: 100
-        name: created_by
         type: string
       - default: 1
         description: 状态
@@ -270,6 +263,14 @@ paths:
         - 1
         in: query
         name: state
+        type: integer
+      - description: 页码
+        in: query
+        name: page
+        type: integer
+      - description: 每页数量
+        in: query
+        name: page_size
         type: integer
       produces:
       - application/json
@@ -288,10 +289,172 @@ paths:
             $ref: '#/definitions/errorCode.Error'
       security:
       - ApiKeyAuth: []
-      summary: 获取单个文章
+      summary: 获取多个文章
       tags:
       - 文章管理
   /api/v1/tags:
+    delete:
+      description: 删除标签
+      parameters:
+      - description: 标签 ID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 删除标签
+      tags:
+      - 标签管理
+    get:
+      description: 获取单个标签，未实现
+      parameters:
+      - description: 标签名称
+        in: query
+        maxLength: 100
+        name: name
+        required: true
+        type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
+        in: query
+        name: state
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/model.Tag'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 获取单个标签
+      tags:
+      - 标签管理
+    post:
+      description: 创建一个新标签
+      parameters:
+      - description: 标签名称
+        in: query
+        maxLength: 100
+        minLength: 1
+        name: name
+        required: true
+        type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
+        in: query
+        name: state
+        type: integer
+      - description: 创建者
+        in: query
+        maxLength: 100
+        minLength: 1
+        name: created_by
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/model.Tag'
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 新增标签
+      tags:
+      - 标签管理
+    put:
+      description: 更新标签
+      parameters:
+      - description: 标签 ID
+        in: query
+        name: id
+        required: true
+        type: integer
+      - description: 标签名称
+        in: query
+        maxLength: 100
+        minLength: 1
+        name: name
+        type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
+        in: query
+        name: state
+        type: integer
+      - description: 修改者
+        in: formData
+        maxLength: 100
+        minLength: 1
+        name: modified_by
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            items:
+              $ref: '#/definitions/model.Tag'
+            type: array
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 更新标签
+      tags:
+      - 标签管理
+  /api/v1/tags/multi:
     get:
       description: 获取多个标签
       parameters:
@@ -334,169 +497,6 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: 获取多个标签
-      tags:
-      - 标签管理
-    post:
-      description: 创建一个新标签
-      parameters:
-      - description: 标签名称
-        in: formData
-        maxLength: 100
-        minLength: 1
-        name: name
-        required: true
-        type: string
-      - default: 1
-        description: 状态
-        enum:
-        - 0
-        - 1
-        in: query
-        name: state
-        type: integer
-      - description: 创建者
-        in: formData
-        maxLength: 100
-        minLength: 1
-        name: created_by
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 成功
-          schema:
-            $ref: '#/definitions/model.Tag'
-        "400":
-          description: 请求错误
-          schema:
-            $ref: '#/definitions/errorCode.Error'
-        "500":
-          description: 内部错误
-          schema:
-            $ref: '#/definitions/errorCode.Error'
-      security:
-      - ApiKeyAuth: []
-      summary: 新增标签
-      tags:
-      - 标签管理
-  /api/v1/tags/{id}:
-    delete:
-      description: 删除标签
-      parameters:
-      - description: 标签 ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 成功
-          schema:
-            type: string
-        "400":
-          description: 请求错误
-          schema:
-            $ref: '#/definitions/errorCode.Error'
-        "500":
-          description: 内部错误
-          schema:
-            $ref: '#/definitions/errorCode.Error'
-      security:
-      - ApiKeyAuth: []
-      summary: 删除标签
-      tags:
-      - 标签管理
-    put:
-      description: 更新标签
-      parameters:
-      - description: 标签 ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      - description: 标签名称
-        in: formData
-        maxLength: 100
-        minLength: 1
-        name: name
-        type: string
-      - default: 1
-        description: 状态
-        enum:
-        - 0
-        - 1
-        in: query
-        name: state
-        type: integer
-      - description: 修改者
-        in: formData
-        maxLength: 100
-        minLength: 1
-        name: modified_by
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 成功
-          schema:
-            items:
-              $ref: '#/definitions/model.Tag'
-            type: array
-        "400":
-          description: 请求错误
-          schema:
-            $ref: '#/definitions/errorCode.Error'
-        "500":
-          description: 内部错误
-          schema:
-            $ref: '#/definitions/errorCode.Error'
-      security:
-      - ApiKeyAuth: []
-      summary: 更新标签
-      tags:
-      - 标签管理
-  /api/v1/tags/{name}:
-    get:
-      description: 获取单个标签，未实现
-      parameters:
-      - description: 标签名称
-        in: path
-        maxLength: 100
-        name: name
-        required: true
-        type: string
-      - default: 1
-        description: 状态
-        enum:
-        - 0
-        - 1
-        in: query
-        name: state
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 成功
-          schema:
-            $ref: '#/definitions/model.Tag'
-        "400":
-          description: 请求错误
-          schema:
-            $ref: '#/definitions/errorCode.Error'
-        "500":
-          description: 内部错误
-          schema:
-            $ref: '#/definitions/errorCode.Error'
-      security:
-      - ApiKeyAuth: []
-      summary: 获取单个标签
       tags:
       - 标签管理
   /auth/login:

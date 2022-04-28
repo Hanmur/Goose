@@ -225,3 +225,19 @@
 2022-04-27T15:51:03.857+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
 2022-04-27T15:51:04.867+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
 2022-04-27T15:51:42.512+0800	ERROR	articlesAPI/article.go:243	svc.DeleteArticle err: 无删除权限
+2022-04-28T08:23:49.590+0800	ERROR	articlesAPI/article.go:38	app.BindAndValid errs: Title为必填字段,CreatedBy为必填字段
+2022-04-28T08:27:32.924+0800	ERROR	articlesAPI/article.go:38	app.BindAndValid errs: Title为必填字段,CreatedBy为必填字段
+2022-04-28T08:27:37.379+0800	ERROR	articlesAPI/article.go:47	svc.GetArticle err: record not found
+2022-04-28T08:29:23.667+0800	ERROR	articlesAPI/article.go:178	app.BindAndValid errs: ID为必填字段
+2022-04-28T08:29:35.128+0800	ERROR	articlesAPI/article.go:178	app.BindAndValid errs: ID为必填字段
+2022-04-28T08:29:51.581+0800	ERROR	articlesAPI/article.go:178	app.BindAndValid errs: ID为必填字段
+2022-04-28T08:30:04.810+0800	ERROR	articlesAPI/article.go:178	app.BindAndValid errs: ID为必填字段
+2022-04-28T08:31:25.277+0800	ERROR	articlesAPI/article.go:178	app.BindAndValid errs: ID为必填字段
+2022-04-28T08:32:35.600+0800	ERROR	articlesAPI/article.go:231	app.BindAndValid errs: ID为必填字段
+2022-04-28T08:33:14.883+0800	ERROR	articlesAPI/article.go:231	app.BindAndValid errs: ID为必填字段
+2022-04-28T08:33:49.864+0800	ERROR	articlesAPI/article.go:231	app.BindAndValid errs: ID为必填字段
+2022-04-28T08:33:52.909+0800	ERROR	articlesAPI/article.go:231	app.BindAndValid errs: ID为必填字段
+2022-04-28T08:37:34.300+0800	ERROR	articlesAPI/article.go:231	app.BindAndValid errs: ID为必填字段
+2022-04-28T08:37:39.476+0800	ERROR	articlesAPI/article.go:231	app.BindAndValid errs: ID为必填字段
+2022-04-28T08:37:43.320+0800	ERROR	articlesAPI/article.go:231	app.BindAndValid errs: ID为必填字段
+2022-04-28T08:48:21.137+0800	ERROR	articlesAPI/article.go:231	app.BindAndValid errs: ID为必填字段

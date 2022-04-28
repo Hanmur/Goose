@@ -66,18 +66,18 @@ func NewRouter() *gin.Engine {
 	apiService.Use(middleware.JWT())
 	{
 		apiService.POST("/tags", tag.Create)
-		apiService.DELETE("/tags/:id", tag.Delete)
-		apiService.PUT("/tags/:id", tag.Update)
-		apiService.PATCH("/tags/:id/state", tag.Update)
-		apiService.GET("/tags/:id", tag.Get)
-		apiService.GET("/tags", tag.List)
+		apiService.DELETE("/tags", tag.Delete)
+		apiService.PUT("/tags", tag.Update)
+		apiService.PATCH("/tags/state", tag.Update)
+		apiService.GET("/tags", tag.Get)
+		apiService.GET("/tags/multi", tag.List)
 
 		apiService.POST("/article", article.Create)
-		apiService.DELETE("/article/:id", article.Delete)
-		apiService.PUT("/article/:id", article.Update)
-		apiService.PATCH("/article/:id/state", article.Update)
-		apiService.GET("/article/:id", article.Get)
-		apiService.GET("/article", article.List)
+		apiService.DELETE("/article", article.Delete)
+		apiService.PUT("/article", article.Update)
+		apiService.PATCH("/article/state", article.Update)
+		apiService.GET("/article", article.Get)
+		apiService.GET("/article/multi", article.List)
 	}
 
 	return router

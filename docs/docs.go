@@ -27,20 +27,110 @@ const docTemplate = `{
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "获取多个文章",
+                "description": "获取单个文章",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "文章管理"
                 ],
-                "summary": "获取多个文章",
+                "summary": "获取单个文章",
                 "parameters": [
                     {
                         "maxLength": 100,
                         "type": "string",
                         "description": "文章名称",
                         "name": "title",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 100,
+                        "type": "string",
+                        "description": "文章作者",
+                        "name": "created_by",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "enum": [
+                            0,
+                            1
+                        ],
+                        "type": "integer",
+                        "default": 1,
+                        "description": "状态",
+                        "name": "state",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/model.Article"
+                        }
+                    },
+                    "400": {
+                        "description": "请求错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "更新文章",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章管理"
+                ],
+                "summary": "更新文章",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "文章 ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 100,
+                        "type": "string",
+                        "description": "文章标题",
+                        "name": "title",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "文章描述",
+                        "name": "desc",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "文章内容",
+                        "name": "content",
+                        "in": "query"
+                    },
+                    {
+                        "maxLength": 100,
+                        "type": "string",
+                        "description": "封面路径",
+                        "name": "cover_image_url",
                         "in": "query"
                     },
                     {
@@ -55,15 +145,11 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
-                        "description": "页码",
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "每页数量",
-                        "name": "page_size",
+                        "maxLength": 100,
+                        "minLength": 3,
+                        "type": "string",
+                        "description": "修改者",
+                        "name": "modified_by",
                         "in": "query"
                     }
                 ],
@@ -71,7 +157,10 @@ const docTemplate = `{
                     "200": {
                         "description": "成功",
                         "schema": {
-                            "$ref": "#/definitions/model.Article"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Article"
+                            }
                         }
                     },
                     "400": {
@@ -167,100 +256,6 @@ const docTemplate = `{
                         }
                     }
                 }
-            }
-        },
-        "/api/v1/article/{id}": {
-            "put": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "更新文章",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "文章管理"
-                ],
-                "summary": "更新文章",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "文章 ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "maxLength": 100,
-                        "type": "string",
-                        "description": "文章标题",
-                        "name": "title",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "description": "文章描述",
-                        "name": "desc",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "description": "文章内容",
-                        "name": "content",
-                        "in": "formData"
-                    },
-                    {
-                        "maxLength": 100,
-                        "type": "string",
-                        "description": "封面路径",
-                        "name": "cover_image_url",
-                        "in": "formData"
-                    },
-                    {
-                        "enum": [
-                            0,
-                            1
-                        ],
-                        "type": "integer",
-                        "default": 1,
-                        "description": "状态",
-                        "name": "state",
-                        "in": "formData"
-                    },
-                    {
-                        "maxLength": 100,
-                        "minLength": 3,
-                        "type": "string",
-                        "description": "修改者",
-                        "name": "modified_by",
-                        "in": "formData"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "成功",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/model.Article"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "请求错误",
-                        "schema": {
-                            "$ref": "#/definitions/errorCode.Error"
-                        }
-                    },
-                    "500": {
-                        "description": "内部错误",
-                        "schema": {
-                            "$ref": "#/definitions/errorCode.Error"
-                        }
-                    }
-                }
             },
             "delete": {
                 "security": [
@@ -281,7 +276,7 @@ const docTemplate = `{
                         "type": "integer",
                         "description": "文章 ID",
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -307,34 +302,27 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/v1/article/{title}": {
+        "/api/v1/article/multi": {
             "get": {
                 "security": [
                     {
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "获取单个文章",
+                "description": "获取多个文章",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "文章管理"
                 ],
-                "summary": "获取单个文章",
+                "summary": "获取多个文章",
                 "parameters": [
                     {
                         "maxLength": 100,
                         "type": "string",
                         "description": "文章名称",
                         "name": "title",
-                        "in": "query"
-                    },
-                    {
-                        "maxLength": 100,
-                        "type": "string",
-                        "description": "文章作者",
-                        "name": "created_by",
                         "in": "query"
                     },
                     {
@@ -346,6 +334,18 @@ const docTemplate = `{
                         "default": 1,
                         "description": "状态",
                         "name": "state",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "页码",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "每页数量",
+                        "name": "page_size",
                         "in": "query"
                     }
                 ],
@@ -378,21 +378,22 @@ const docTemplate = `{
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "获取多个标签",
+                "description": "获取单个标签，未实现",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "标签管理"
                 ],
-                "summary": "获取多个标签",
+                "summary": "获取单个标签",
                 "parameters": [
                     {
                         "maxLength": 100,
                         "type": "string",
                         "description": "标签名称",
                         "name": "name",
-                        "in": "query"
+                        "in": "query",
+                        "required": true
                     },
                     {
                         "enum": [
@@ -403,18 +404,6 @@ const docTemplate = `{
                         "default": 1,
                         "description": "状态",
                         "name": "state",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "页码",
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "每页数量",
-                        "name": "page_size",
                         "in": "query"
                     }
                 ],
@@ -439,74 +428,6 @@ const docTemplate = `{
                     }
                 }
             },
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "创建一个新标签",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "标签管理"
-                ],
-                "summary": "新增标签",
-                "parameters": [
-                    {
-                        "maxLength": 100,
-                        "minLength": 1,
-                        "type": "string",
-                        "description": "标签名称",
-                        "name": "name",
-                        "in": "formData",
-                        "required": true
-                    },
-                    {
-                        "enum": [
-                            0,
-                            1
-                        ],
-                        "type": "integer",
-                        "default": 1,
-                        "description": "状态",
-                        "name": "state",
-                        "in": "query"
-                    },
-                    {
-                        "maxLength": 100,
-                        "minLength": 1,
-                        "type": "string",
-                        "description": "创建者",
-                        "name": "created_by",
-                        "in": "formData",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "成功",
-                        "schema": {
-                            "$ref": "#/definitions/model.Tag"
-                        }
-                    },
-                    "400": {
-                        "description": "请求错误",
-                        "schema": {
-                            "$ref": "#/definitions/errorCode.Error"
-                        }
-                    },
-                    "500": {
-                        "description": "内部错误",
-                        "schema": {
-                            "$ref": "#/definitions/errorCode.Error"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/tags/{id}": {
             "put": {
                 "security": [
                     {
@@ -526,7 +447,7 @@ const docTemplate = `{
                         "type": "integer",
                         "description": "标签 ID",
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true
                     },
                     {
@@ -535,7 +456,7 @@ const docTemplate = `{
                         "type": "string",
                         "description": "标签名称",
                         "name": "name",
-                        "in": "formData"
+                        "in": "query"
                     },
                     {
                         "enum": [
@@ -582,6 +503,72 @@ const docTemplate = `{
                     }
                 }
             },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "创建一个新标签",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "标签管理"
+                ],
+                "summary": "新增标签",
+                "parameters": [
+                    {
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "标签名称",
+                        "name": "name",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "enum": [
+                            0,
+                            1
+                        ],
+                        "type": "integer",
+                        "default": 1,
+                        "description": "状态",
+                        "name": "state",
+                        "in": "query"
+                    },
+                    {
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "创建者",
+                        "name": "created_by",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/model.Tag"
+                        }
+                    },
+                    "400": {
+                        "description": "请求错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    }
+                }
+            },
             "delete": {
                 "security": [
                     {
@@ -601,7 +588,7 @@ const docTemplate = `{
                         "type": "integer",
                         "description": "标签 ID",
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -627,29 +614,28 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/v1/tags/{name}": {
+        "/api/v1/tags/multi": {
             "get": {
                 "security": [
                     {
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "获取单个标签，未实现",
+                "description": "获取多个标签",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "标签管理"
                 ],
-                "summary": "获取单个标签",
+                "summary": "获取多个标签",
                 "parameters": [
                     {
                         "maxLength": 100,
                         "type": "string",
                         "description": "标签名称",
                         "name": "name",
-                        "in": "path",
-                        "required": true
+                        "in": "query"
                     },
                     {
                         "enum": [
@@ -660,6 +646,18 @@ const docTemplate = `{
                         "default": 1,
                         "description": "状态",
                         "name": "state",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "页码",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "每页数量",
+                        "name": "page_size",
                         "in": "query"
                     }
                 ],

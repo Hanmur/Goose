@@ -22,13 +22,13 @@ func NewArticle() Article {
 // @Tags	 	文章管理
 // @Produce  	json
 // @Security ApiKeyAuth
-// @Param    	title      	query     	string  	false  	"文章名称"  	maxlength(100)
-// @Param		created_by	query		string		false	"文章作者"	maxlength(100)
+// @Param    	title      	query     	string  	true  	"文章名称"  	maxlength(100)
+// @Param		created_by	query		string		true	"文章作者"	maxlength(100)
 // @Param    	state      	query     	int         false  	"状态"    Enums(0, 1)  default(1)
 // @Success  	200        {object}  model.Article      "成功"
 // @Failure  	400        {object}  errorCode.Error  "请求错误"
 // @Failure  	500        {object}  errorCode.Error  "内部错误"
-// @Router   	/api/v1/article/{title} [get]
+// @Router   	/api/v1/article [get]
 func (article Article) Get(context *gin.Context) {
 	// 参数校验
 	param := validator.GetArticleRequest{Title: convert.StrTo(context.Param("title")).String()}
@@ -66,7 +66,7 @@ func (article Article) Get(context *gin.Context) {
 // @Success  	200        {object}  model.Article      "成功"
 // @Failure  	400        {object}  errorCode.Error  "请求错误"
 // @Failure  	500        {object}  errorCode.Error  "内部错误"
-// @Router   	/api/v1/article [get]
+// @Router   	/api/v1/article/multi [get]
 func (article Article) List(context *gin.Context) {
 	// 参数校验
 	param := validator.ArticleListRequest{}
@@ -156,17 +156,17 @@ func (article Article) Create(context *gin.Context) {
 // @Tags	 	文章管理
 // @Produce  	json
 // @Security ApiKeyAuth
-// @Param    	id           	path      	int     true   	"文章 ID"
-// @Param    	title       	formData    string	false   "文章标题"  	maxlength(100)
-// @Param		desc			formData	string	false	"文章描述"	maxlength(250）
-// @Param		content			formData	string	false	"文章内容"
-// @Param		cover_image_url	formData	string	false	"封面路径"	maxlength(100)
-// @Param    	state        	formData    int     false  "状态"    Enums(0, 1)   default(1)
-// @Param    	modified_by  	formData    string  false   "修改者"   minlength(3)  maxlength(100)
+// @Param    	id           	query    int     true   	"文章 ID"
+// @Param    	title       	query    string	false   "文章标题"  	maxlength(100)
+// @Param		desc			query	string	false	"文章描述"	maxlength(250）
+// @Param		content			query	string	false	"文章内容"
+// @Param		cover_image_url	query	string	false	"封面路径"	maxlength(100)
+// @Param    	state        	query    int     false  "状态"    Enums(0, 1)   default(1)
+// @Param    	modified_by  	query    string  false   "修改者"   minlength(3)  maxlength(100)
 // @Success  	200          {array}   model.Article      "成功"
 // @Failure  	400          {object}  errorCode.Error  "请求错误"
 // @Failure  	500          {object}  errorCode.Error  "内部错误"
-// @Router   	/api/v1/article/{id} [put]
+// @Router   	/api/v1/article [put]
 func (article Article) Update(context *gin.Context) {
 	// 参数校验
 	param := validator.UpdateArticleRequest{
@@ -217,11 +217,11 @@ func (article Article) Update(context *gin.Context) {
 // @Tags	 	文章管理
 // @Produce  	json
 // @Security ApiKeyAuth
-// @Param    	id   path      int            true  "文章 ID"
+// @Param    	id   query  int            true  "文章 ID"
 // @Success  	200  {string}  string         "成功"
 // @Failure  	400  {object}  errorCode.Error  "请求错误"
 // @Failure  	500  {object}  errorCode.Error  "内部错误"
-// @Router   	/api/v1/article/{id} [delete]
+// @Router   	/api/v1/article [delete]
 func (article Article) Delete(context *gin.Context) {
 	// 参数校验
 	param := validator.DeleteArticleRequest{ID: convert.StrTo(context.Param("id")).MustUInt32()}

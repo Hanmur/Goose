@@ -18,16 +18,16 @@ func NewTag() Tag {
 
 //Get
 // @Summary  	获取单个标签
-// @Description	获取单个标签，未实现
+// @Description	获取单个标签
 // @Tags	 	标签管理
 // @Produce  	json
 // @Security ApiKeyAuth
-// @Param    	name       path     string         true  "标签名称"  maxlength(100)
+// @Param    	name       query     string         true  "标签名称"  maxlength(100)
 // @Param    	state      query     int           false  "状态"    Enums(0, 1)  default(1)
 // @Success  	200        {object}  model.Tag      "成功"
 // @Failure  	400        {object}  errorCode.Error  "请求错误"
 // @Failure  	500        {object}  errorCode.Error  "内部错误"
-// @Router   	/api/v1/tags/{name} [get]
+// @Router   	/api/v1/tags [get]
 func (tag Tag) Get(context *gin.Context) {
 	// 参数校验
 	param := validator.GetTagRequest{}
@@ -65,7 +65,7 @@ func (tag Tag) Get(context *gin.Context) {
 // @Success  	200        {object}  model.Tag      "成功"
 // @Failure  	400        {object}  errorCode.Error  "请求错误"
 // @Failure  	500        {object}  errorCode.Error  "内部错误"
-// @Router   	/api/v1/tags [get]
+// @Router   	/api/v1/tags/multi [get]
 func (tag Tag) List(context *gin.Context) {
 	// 参数校验
 	param := validator.TagListRequest{}
@@ -106,9 +106,9 @@ func (tag Tag) List(context *gin.Context) {
 // @Tags	 	标签管理
 // @Produce  	json
 // @Security ApiKeyAuth
-// @Param    	name        formData      string         true   "标签名称"  minlength(1)  maxlength(100)
+// @Param    	name        query      string         true   "标签名称"  minlength(1)  maxlength(100)
 // @Param    	state       query      int            false  "状态"    Enums(0, 1)   default(1)
-// @Param    	created_by  formData      string         true   "创建者"   minlength(1)  maxlength(100)
+// @Param    	created_by  query      string         true   "创建者"   minlength(1)  maxlength(100)
 // @Success  	200         {object}  model.Tag      "成功"
 // @Failure  	400         {object}  errorCode.Error  "请求错误"
 // @Failure  	500         {object}  errorCode.Error  "内部错误"
@@ -144,14 +144,14 @@ func (tag Tag) Create(context *gin.Context) {
 // @Tags	 	标签管理
 // @Produce  	json
 // @Security ApiKeyAuth
-// @Param    	id           path      	int            true   "标签 ID"
-// @Param    	name         formData   string         false  "标签名称"  minlength(1)  maxlength(100)
+// @Param    	id           query      int            true   "标签 ID"
+// @Param    	name         query   	string         false  "标签名称"  minlength(1)  maxlength(100)
 // @Param    	state        query      int            false  "状态"    Enums(0, 1)   default(1)
 // @Param    	modified_by  formData   string         true   "修改者"   minlength(1)  maxlength(100)
 // @Success  	200          {array}   model.Tag      "成功"
 // @Failure  	400          {object}  errorCode.Error  "请求错误"
 // @Failure  	500          {object}  errorCode.Error  "内部错误"
-// @Router   	/api/v1/tags/{id} [put]
+// @Router   	/api/v1/tags [put]
 func (tag Tag) Update(context *gin.Context) {
 	// 参数校验
 	param := validator.UpdateTagRequest{ID: convert.StrTo(context.Param("id")).MustUInt32()}
@@ -183,11 +183,11 @@ func (tag Tag) Update(context *gin.Context) {
 // @Tags	 	标签管理
 // @Produce  	json
 // @Security ApiKeyAuth
-// @Param    	id   path      int            true  "标签 ID"
+// @Param    	id   query      int            true  "标签 ID"
 // @Success  	200  {string}  string         "成功"
 // @Failure  	400  {object}  errorCode.Error  "请求错误"
 // @Failure  	500  {object}  errorCode.Error  "内部错误"
-// @Router   	/api/v1/tags/{id} [delete]
+// @Router   	/api/v1/tags [delete]
 func (tag Tag) Delete(context *gin.Context) {
 	// 参数校验
 	param := validator.DeleteTagRequest{ID: convert.StrTo(context.Param("id")).MustUInt32()}
