@@ -128,8 +128,7 @@ func (tag Tag) Create(context *gin.Context) {
 	svc := service.New(context.Request.Context())
 	err := svc.CreateTag(param.Name, param.State, param.CreatedBy)
 	if err != nil {
-		global.Logger.ErrorF("svc.CreateTag err: %v", err)
-		response.ToErrorResponse(errorCode.ErrorCreateTagFail)
+		response.ToErrorResponse(err)
 		return
 	}
 

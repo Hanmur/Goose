@@ -241,3 +241,7 @@
 2022-04-28T08:37:39.476+0800	ERROR	articlesAPI/article.go:231	app.BindAndValid errs: ID为必填字段
 2022-04-28T08:37:43.320+0800	ERROR	articlesAPI/article.go:231	app.BindAndValid errs: ID为必填字段
 2022-04-28T08:48:21.137+0800	ERROR	articlesAPI/article.go:231	app.BindAndValid errs: ID为必填字段
+2022-04-28T09:06:22.813+0800	ERROR	articlesAPI/tag.go:46	svc.GetTag err: record not found
+2022-04-28T09:06:27.943+0800	ERROR	articlesAPI/tag.go:46	svc.GetTag err: record not found
+2022-04-28T09:12:07.324+0800	ERROR	articlesAPI/tag.go:46	svc.GetTag err: record not found
+2022-04-28T09:17:55.495+0800	ERROR	articlesAPI/tag.go:46	svc.GetTag err: record not found

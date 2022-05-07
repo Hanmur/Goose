@@ -7,6 +7,7 @@ var (
 	ErrorDeleteTagFail  = NewError(20010004, "删除标签失败")
 	ErrorCountTagFail   = NewError(20010005, "统计标签失败")
 	ErrorGetTagFail     = NewError(20010006, "获取标签失败")
+	ErrorTagExist       = NewError(20010007, "标签已存在")
 
 	ErrorGetArticleListFail = NewError(20020001, "获取文章列表失败")
 	ErrorCreateArticleFail  = NewError(20020002, "创建文章失败")
