@@ -31,7 +31,7 @@ func (svc *Service) DeleteArticle(ID uint32, authName string) *errorCode.Error {
 	article, err := svc.dao.GetArticleByID(ID)
 	if err != nil {
 		global.Logger.ErrorF("svc.dao.GetArticleByID err: %v", err)
-		return errorCode.ErrorDeleteArticleFail
+		return errorCode.ErrorArticleNotFound
 	}
 	if article.CreatedBy != authName {
 		return errorCode.ErrorDeleteArticlePower

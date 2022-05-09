@@ -1,15 +1,13 @@
 package errorCode
 
+import "net/http"
+
 //内部错误码定义表
 var (
-	Success                   = NewError(0, "成功")
-	ServerError               = NewError(10000000, "服务内部错误")
-	InvalidParams             = NewError(10000001, "入参错误")
-	NotFound                  = NewError(10000002, "找不到")
-	UnauthorizedAuthNotExist  = NewError(10000003, "鉴权失败，找不到对应的 AuthName 和 AuthCode")
-	UnauthorizedTokenError    = NewError(10000004, "鉴权失败，Token 错误")
-	UnauthorizedTokenTimeout  = NewError(10000005, "鉴权失败，Token 超时")
-	UnauthorizedTokenGenerate = NewError(10000006, "鉴权失败，Token 生成失败")
-	TooManyRequests           = NewError(10000007, "请求过多")
-	ParamsTokenError          = NewError(10000008, "入参Token缺失")
+	Success          = NewError(00000000, http.StatusOK, "成功")
+	ServerError      = NewError(10000000, http.StatusInternalServerError, "服务内部错误")
+	InvalidParams    = NewError(10000001, http.StatusBadRequest, "入参错误")
+	NotFound         = NewError(10000002, http.StatusNotFound, "找不到")
+	TooManyRequests  = NewError(10000003, http.StatusTooManyRequests, "请求过多")
+	ParamsTokenError = NewError(10000004, http.StatusBadRequest, "入参Token缺失")
 )
