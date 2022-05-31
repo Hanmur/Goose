@@ -21,4 +21,7 @@ var (
 	ErrorEmailExist            = NewError(20000012, http.StatusBadRequest, "邮箱已存在")
 	ErrorModifyCode            = NewError(20000013, http.StatusInternalServerError, "修改密码失败")
 	ErrorAuthNoExist           = NewError(20000014, http.StatusBadRequest, "账户不存在")
+	ErrorUploadAvatar          = NewError(20000015, http.StatusBadRequest, "头像修改失败")
+	ErrorModifyAuthInfo        = NewError(20000016, http.StatusInternalServerError, "修改账户信息失败")
+	ErrorGetAuthInfo           = NewError(20000017, http.StatusInternalServerError, "获取账户信息失败")
 )

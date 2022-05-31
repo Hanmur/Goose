@@ -292,6 +292,90 @@ paths:
       summary: 获取多个文章
       tags:
       - 文章管理
+  /api/v1/auth/getInfo:
+    get:
+      description: 获取个人信息
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 获取个人信息
+      tags:
+      - 账户管理
+  /api/v1/auth/modifyAvatar:
+    put:
+      description: 修改头像
+      parameters:
+      - description: 头像
+        in: formData
+        name: head_image
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 修改头像
+      tags:
+      - 账户管理
+  /api/v1/auth/modifyInfo:
+    put:
+      description: 修改个人信息
+      parameters:
+      - description: 别名
+        in: formData
+        name: nick_name
+        type: string
+      - description: 描述
+        in: formData
+        name: desc
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 修改个人信息
+      tags:
+      - 账户管理
   /api/v1/tags:
     delete:
       description: 删除标签
@@ -322,7 +406,7 @@ paths:
       tags:
       - 标签管理
     get:
-      description: 获取单个标签，未实现
+      description: 获取单个标签
       parameters:
       - description: 标签名称
         in: query

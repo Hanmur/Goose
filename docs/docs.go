@@ -371,6 +371,140 @@ const docTemplate = `{
                 }
             }
         },
+        "/api/v1/auth/getInfo": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "获取个人信息",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "账户管理"
+                ],
+                "summary": "获取个人信息",
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "请求错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/modifyAvatar": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "修改头像",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "账户管理"
+                ],
+                "summary": "修改头像",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "头像",
+                        "name": "head_image",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "请求错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/modifyInfo": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "修改个人信息",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "账户管理"
+                ],
+                "summary": "修改个人信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "别名",
+                        "name": "nick_name",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "描述",
+                        "name": "desc",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "请求错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/tags": {
             "get": {
                 "security": [
@@ -378,7 +512,7 @@ const docTemplate = `{
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "获取单个标签，未实现",
+                "description": "获取单个标签",
                 "produces": [
                     "application/json"
                 ],

@@ -62,9 +62,14 @@ func NewRouter() *gin.Engine {
 	// 注册服务API
 	article := articlesAPI.NewArticle()
 	tag := articlesAPI.NewTag()
+	authInfo := authAPI.NewAuthInfo()
 	apiService := router.Group("/api/v1")
 	apiService.Use(middleware.JWT())
 	{
+		apiService.PUT("/auth/modifyInfo", authInfo.ModifyInfo)
+		apiService.PUT("/auth/modifyAvatar", authInfo.ModifyAvatar)
+		apiService.GET("/auth/getInfo", authInfo.GetInfo)
+
 		apiService.POST("/tags", tag.Create)
 		apiService.DELETE("/tags", tag.Delete)
 		apiService.PUT("/tags", tag.Update)

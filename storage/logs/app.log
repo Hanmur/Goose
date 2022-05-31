@@ -245,3 +245,14 @@
 2022-04-28T09:06:27.943+0800	ERROR	articlesAPI/tag.go:46	svc.GetTag err: record not found
 2022-04-28T09:12:07.324+0800	ERROR	articlesAPI/tag.go:46	svc.GetTag err: record not found
 2022-04-28T09:17:55.495+0800	ERROR	articlesAPI/tag.go:46	svc.GetTag err: record not found
+2022-05-30T19:56:30.114+0800	ERROR	authAPI/authInfo.go:41	app.BindAndValid errs: 
+2022-05-30T20:08:04.867+0800	ERROR	authAPI/authInfo.go:42	app.BindAndValid errs: 
+2022-05-30T20:13:17.155+0800	ERROR	authAPI/authInfo.go:42	app.BindAndValid errs: 
+2022-05-30T20:22:04.858+0800	ERROR	authAPI/authInfo.go:42	app.BindAndValid errs: 
+2022-05-30T20:22:44.780+0800	ERROR	authAPI/authInfo.go:42	app.BindAndValid errs: 
+2022-05-30T20:24:23.876+0800	ERROR	authAPI/authInfo.go:42	app.BindAndValid errs: 
+2022-05-30T20:25:10.169+0800	ERROR	authAPI/authInfo.go:42	app.BindAndValid errs: 
+2022-05-31T12:44:51.059+0800	INFO	authAPI/authInfo.go:106	Hanmur
+2022-05-31T12:44:51.101+0800	INFO	authAPI/authInfo.go:114	Hanmur
+2022-05-31T12:51:22.829+0800	INFO	authAPI/authInfo.go:106	Hanmur
+2022-05-31T12:51:22.833+0800	INFO	authAPI/authInfo.go:114	Hanmur
