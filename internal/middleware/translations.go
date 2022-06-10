@@ -7,9 +7,9 @@ import (
 	"github.com/go-playground/locales/zh"
 	"github.com/go-playground/locales/zh_Hant_TW"
 	"github.com/go-playground/universal-translator"
-	"github.com/go-playground/validator"
-	enTranslations "github.com/go-playground/validator/translations/en"
-	zhTranslations "github.com/go-playground/validator/translations/zh"
+	"github.com/go-playground/validator/v10"
+	enTranslations "github.com/go-playground/validator/v10/translations/en"
+	zhTranslations "github.com/go-playground/validator/v10/translations/zh"
 )
 
 func Translations() gin.HandlerFunc {
@@ -36,4 +36,3 @@ func Translations() gin.HandlerFunc {
 		context.Next()
 	}
 }
-
