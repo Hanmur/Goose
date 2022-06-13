@@ -20,7 +20,7 @@ func (svc *Service) ModifyAuthInfo(nickName, desc, authName string) *errorCode.E
 //ModifyAvatar 修改用户头像
 func (svc *Service) ModifyAvatar(authName string, file multipart.File, fileHeader *multipart.FileHeader) *errorCode.Error {
 	// Upload Avatar
-	fileInfo, err := svc.UploadAvatar(file, fileHeader)
+	fileInfo, err := svc.UploadAvatar(file, fileHeader, authName)
 	if err != nil {
 		return errorCode.ErrorUploadAvatar.WithDetails(err.Error())
 	}
