@@ -371,44 +371,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/v1/auth/getInfo": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "获取个人信息",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "账户管理"
-                ],
-                "summary": "获取个人信息",
-                "responses": {
-                    "200": {
-                        "description": "成功",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "400": {
-                        "description": "请求错误",
-                        "schema": {
-                            "$ref": "#/definitions/errorCode.Error"
-                        }
-                    },
-                    "500": {
-                        "description": "内部错误",
-                        "schema": {
-                            "$ref": "#/definitions/errorCode.Error"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/auth/modifyAvatar": {
+        "/api/v1/auth/avatar": {
             "put": {
                 "security": [
                     {
@@ -454,7 +417,42 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/v1/auth/modifyInfo": {
+        "/api/v1/auth/info": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "获取个人信息",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "账户管理"
+                ],
+                "summary": "获取个人信息",
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "请求错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "内部错误",
+                        "schema": {
+                            "$ref": "#/definitions/errorCode.Error"
+                        }
+                    }
+                }
+            },
             "put": {
                 "security": [
                     {

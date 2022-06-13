@@ -56,6 +56,7 @@ func (svc *Service) UploadAvatar(file multipart.File, fileHeader *multipart.File
 
 	// FilePath
 	uploadSavePath := upload.GetSavePath()
+	filePath := "/avatars" + "/" + fileName
 	if upload.CheckSavePath(uploadSavePath) {
 		if err := upload.CreateSavePath(uploadSavePath, os.ModePerm); err != nil {
 			return nil, errors.New("failed to create save directory")
@@ -64,13 +65,13 @@ func (svc *Service) UploadAvatar(file multipart.File, fileHeader *multipart.File
 	if upload.CheckPermission(uploadSavePath) {
 		return nil, errors.New("insufficient file permissions")
 	}
-	dst := uploadSavePath + "/" + "avatars" + "/" + fileName
 
 	// FileSave
+	dst := uploadSavePath + filePath
 	if err := upload.SaveFile(fileHeader, dst); err != nil {
 		return nil, err
 	}
 
-	accessUrl := global.AppSetting.UploadServerUrl + "/" + fileName
+	accessUrl := global.AppSetting.UploadServerUrl + filePath
 	return &FileInfo{Name: fileName, AccessUrl: accessUrl}, nil
 }

@@ -292,30 +292,7 @@ paths:
       summary: 获取多个文章
       tags:
       - 文章管理
-  /api/v1/auth/getInfo:
-    get:
-      description: 获取个人信息
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 成功
-          schema:
-            type: string
-        "400":
-          description: 请求错误
-          schema:
-            $ref: '#/definitions/errorCode.Error'
-        "500":
-          description: 内部错误
-          schema:
-            $ref: '#/definitions/errorCode.Error'
-      security:
-      - ApiKeyAuth: []
-      summary: 获取个人信息
-      tags:
-      - 账户管理
-  /api/v1/auth/modifyAvatar:
+  /api/v1/auth/avatar:
     put:
       description: 修改头像
       parameters:
@@ -344,7 +321,29 @@ paths:
       summary: 修改头像
       tags:
       - 账户管理
-  /api/v1/auth/modifyInfo:
+  /api/v1/auth/info:
+    get:
+      description: 获取个人信息
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            type: string
+        "400":
+          description: 请求错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errorCode.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: 获取个人信息
+      tags:
+      - 账户管理
     put:
       description: 修改个人信息
       parameters:

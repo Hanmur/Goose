@@ -56,7 +56,9 @@ func NewRouter() *gin.Engine {
 		apiAuth.POST("/sendCheck", auth.SendCheck)
 		apiAuth.POST("/register", auth.Register)
 		apiAuth.PUT("/modifyCode", auth.ModifyCode)
+		apiAuth.PATCH("/modifyCode", auth.ModifyCode)
 		apiAuth.PUT("/resetCode", auth.ResetCode)
+		apiAuth.PATCH("/resetCode", auth.ResetCode)
 	}
 
 	// 注册服务API
@@ -66,9 +68,11 @@ func NewRouter() *gin.Engine {
 	apiService := router.Group("/api/v1")
 	apiService.Use(middleware.JWT())
 	{
-		apiService.PUT("/auth/modifyInfo", authInfo.ModifyInfo)
-		apiService.PUT("/auth/modifyAvatar", authInfo.ModifyAvatar)
-		apiService.GET("/auth/getInfo", authInfo.GetInfo)
+		apiService.PUT("/auth/info", authInfo.Modify)
+		apiService.PATCH("/auth/info", authInfo.Modify)
+		apiService.PUT("/auth/avatar", authInfo.ModifyAvatar)
+		apiService.PATCH("/auth/avatar", authInfo.ModifyAvatar)
+		apiService.GET("/auth/info", authInfo.Get)
 
 		apiService.POST("/tags", tag.Create)
 		apiService.DELETE("/tags", tag.Delete)

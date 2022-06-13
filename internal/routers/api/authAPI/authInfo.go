@@ -15,7 +15,7 @@ func NewAuthInfo() AuthInfo {
 	return AuthInfo{}
 }
 
-//ModifyInfo
+//Modify
 // @Summary  	修改个人信息
 // @Description	修改个人信息
 // @Tags	 	账户管理
@@ -26,8 +26,8 @@ func NewAuthInfo() AuthInfo {
 // @Success  	200        {object}  string	 	     	"成功"
 // @Failure  	400        {object}  errorCode.Error  	"请求错误"
 // @Failure  	500        {object}  errorCode.Error  	"内部错误"
-// @Router   	/api/v1/auth/modifyInfo [PUT]
-func (authInfo AuthInfo) ModifyInfo(c *gin.Context) {
+// @Router   	/api/v1/auth/info [PUT]
+func (authInfo AuthInfo) Modify(c *gin.Context) {
 	// 参数校验
 	param := validator.ModifyInfoRequest{}
 	response := app.NewResponse(c)
@@ -63,7 +63,7 @@ func (authInfo AuthInfo) ModifyInfo(c *gin.Context) {
 // @Success  	200        {object}  string	 	     	"成功"
 // @Failure  	400        {object}  errorCode.Error  	"请求错误"
 // @Failure  	500        {object}  errorCode.Error  	"内部错误"
-// @Router   	/api/v1/auth/modifyAvatar [PUT]
+// @Router   	/api/v1/auth/avatar [PUT]
 func (authInfo AuthInfo) ModifyAvatar(c *gin.Context) {
 	response := app.NewResponse(c)
 
@@ -89,7 +89,7 @@ func (authInfo AuthInfo) ModifyAvatar(c *gin.Context) {
 	response.ToResponse("修改头像成功")
 }
 
-//GetInfo
+//Get
 // @Summary  	获取个人信息
 // @Description	获取个人信息
 // @Tags	 	账户管理
@@ -98,8 +98,8 @@ func (authInfo AuthInfo) ModifyAvatar(c *gin.Context) {
 // @Success  	200        {object}  string	 	     	"成功"
 // @Failure  	400        {object}  errorCode.Error  	"请求错误"
 // @Failure  	500        {object}  errorCode.Error  	"内部错误"
-// @Router   	/api/v1/auth/getInfo [GET]
-func (authInfo AuthInfo) GetInfo(c *gin.Context) {
+// @Router   	/api/v1/auth/info [GET]
+func (authInfo AuthInfo) Get(c *gin.Context) {
 	response := app.NewResponse(c)
 	// 获取账户
 	authName := c.MustGet("auth_name").(string)
